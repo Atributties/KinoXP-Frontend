@@ -12,7 +12,7 @@ function createMovie(event){
         description: document.getElementById("description").value,
     };
     debugger
-    fetch("http://localhost:8080/movie", {
+    fetch("http://localhost:8099/movie", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
