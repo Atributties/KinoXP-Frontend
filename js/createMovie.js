@@ -1,24 +1,24 @@
-console.log("i am in create Movie!!")
+console.log("i am in create Movie!!");
 const movieForm = document.getElementById("movieForm");
 
-function createMovie(event){
+function createMovie(event) {
     event.preventDefault();
 
     const movie = {
-        title: document.getElementById("title").value,
+        title: capitalizeFirstLetter(document.getElementById("title").value),
         imageUrl: document.getElementById("imageUrl").value,
         category: document.getElementById("category").value,
         ageLimit: parseInt(document.getElementById("ageLimit").value),
         duration: parseFloat(document.getElementById("duration").value),
         description: document.getElementById("description").value,
     };
-    debugger
+
     fetch("http://localhost:8099/movie", {
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
         },
-        body: JSON.stringify(movie)
+        body: JSON.stringify(movie),
     })
         .then((response) => response.json())
         .then((data) => {
@@ -33,4 +33,9 @@ function createMovie(event){
             alert("Error creating movie. Please try again.");
         });
 }
-movieForm.addEventListener("submit",createMovie);
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+movieForm.addEventListener("submit", createMovie);
