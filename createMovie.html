@@ -64,7 +64,13 @@
 
 
     <label for="ageLimit">Age Limit:</label>
-    <input type="number" id="ageLimit" name="ageLimit" required><br><br>
+    <select id="ageLimit" name="ageLimit" required>
+        <option value="0">G (General Audiences)</option>
+        <option value="1">PG (Parental Guidance Suggested)</option>
+        <option value="2">PG-13 (Parents Strongly Cautioned)</option>
+        <option value="3">R (Restricted)</option>
+        <option value="4">NC-17 (Adults Only)</option>
+    </select><br><br>
 
     <label for="duration">Duration (minutes):</label>
     <input type="number" id="duration" name="duration" required><br><br>
