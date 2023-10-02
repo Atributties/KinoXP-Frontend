@@ -6,6 +6,7 @@ function createMovie(event){
 
     const movie = {
         title: document.getElementById("title").value,
+        imageUrl: document.getElementById("imageUrl").value,
         category: document.getElementById("category").value,
         ageLimit: parseInt(document.getElementById("ageLimit").value),
         duration: parseFloat(document.getElementById("duration").value),
