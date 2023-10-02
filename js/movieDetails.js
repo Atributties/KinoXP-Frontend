@@ -28,6 +28,9 @@ function displayMovieDetails(movieArray) {
         const movieDetails = document.getElementById("movieDetails");
 
         // Create elements to display movie details
+        const imageElement = document.createElement("img");
+        imageElement.src = movie.imageUrl || "https://media.comicbook.com/files/img/default-movie.png";// Use default image if imageUrl is not available
+        imageElement.style.maxWidth = "100px"; // Set a fixed width for the image
         const titleElement = document.createElement("h2");
         titleElement.textContent = movie.title;
 
@@ -45,6 +48,7 @@ function displayMovieDetails(movieArray) {
 
         // Append elements to the movieDetails div
         movieDetails.appendChild(titleElement);
+        movieDetails.appendChild(imageElement);
         movieDetails.appendChild(categoryElement);
         movieDetails.appendChild(ageLimitElement);
         movieDetails.appendChild(durationElement);
