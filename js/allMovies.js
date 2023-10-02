@@ -16,15 +16,24 @@ function getAllMovies() {
 }
 
 // Function to display movies in the HTML
-// Function to display movies in the HTML
 function displayMovies(movies) {
     const movieList = document.getElementById("movieList");
 
     // Clear previous movie list
     movieList.innerHTML = "";
 
-    // Loop through each movie and create list items
-    movies.forEach((movie) => {
+    // Get selected values from dropdowns
+    const selectedAgeLimit = document.getElementById("ageLimit").value;
+    const selectedCategory = document.getElementById("category").value;
+
+    // Filter movies based on selected values
+    const filteredMovies = movies.filter(movie => {
+        return (!selectedAgeLimit || movie.ageLimit === selectedAgeLimit) &&
+            (!selectedCategory || movie.category === selectedCategory);
+    });
+
+    // Loop through each filtered movie and create list items
+    filteredMovies.forEach((movie) => {
         // Create an anchor element for each movie
         const anchorElement = document.createElement("a");
         anchorElement.href = `movieDetails.html?id=${movie.id}`; // Set the URL to navigate to details page
@@ -75,7 +84,11 @@ function displayMovies(movies) {
     });
 }
 
+// Event listener for dropdown changes
+document.getElementById("ageLimit").addEventListener("change", getAllMovies);
+document.getElementById("category").addEventListener("change", getAllMovies);
 
 // Fetch and display all movies when the page loads
 document.addEventListener("DOMContentLoaded", getAllMovies);
+
 

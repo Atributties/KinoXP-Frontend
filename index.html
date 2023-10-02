@@ -8,8 +8,27 @@
 
 <h1>All Movies</h1>
 
+<!-- Dropdown for Age Limit -->
+<label for="ageLimit">Select Age Limit:</label>
+<select id="ageLimit">
+    <option value="">All</option>
+    <option value="G">G</option>
+    <option value="PG">PG</option>
+    <option value="PG-13">PG-13</option>
+    <option value="R">R</option>
+</select>
+
+<!-- Dropdown for Category -->
+<label for="category">Select Category:</label>
+<select id="category">
+    <option value="">All</option>
+    <option value="ACTION">Action</option>
+    <option value="DRAMA">Drama</option>
+    <!-- Add other categories as needed -->
+</select>
+
 <ul id="movieList"></ul>
 
-</body>
 <script src="js/allMovies.js"></script>
+</body>
 </html>
