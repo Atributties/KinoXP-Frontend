@@ -16,6 +16,7 @@ function getAllMovies() {
 }
 
 // Function to display movies in the HTML
+// Function to display movies in the HTML
 function displayMovies(movies) {
     const movieList = document.getElementById("movieList");
 
@@ -24,6 +25,11 @@ function displayMovies(movies) {
 
     // Loop through each movie and create list items
     movies.forEach((movie) => {
+        // Create an anchor element for each movie
+        const anchorElement = document.createElement("a");
+        anchorElement.href = `movieDetails.html?id=${movie.id}`; // Set the URL to navigate to details page
+        anchorElement.style.textDecoration = "none"; // Remove underline for better appearance
+
         const listItem = document.createElement("li");
         listItem.style.display = "inline-block"; // Set display to inline-block for side-by-side layout
         listItem.style.marginRight = "10px"; // Add some margin between each movie
@@ -34,8 +40,8 @@ function displayMovies(movies) {
         imageElement.alt = movie.title; // Set alt text for accessibility
         imageElement.style.width = "100px"; // Set a fixed width for the image
 
-        // Append the image to the list item
-        listItem.appendChild(imageElement);
+        // Append the image to the anchor
+        anchorElement.appendChild(imageElement);
 
         // Create a div for movie details
         const detailsDiv = document.createElement("div");
@@ -58,14 +64,16 @@ function displayMovies(movies) {
         durationElement.textContent = `Duration: ${movie.duration} minutes`;
         detailsDiv.appendChild(durationElement);
 
-        // Append detailsDiv to the list item
-        listItem.appendChild(detailsDiv);
+        // Append detailsDiv to the anchor
+        anchorElement.appendChild(detailsDiv);
+
+        // Append the anchor to the list item
+        listItem.appendChild(anchorElement);
 
         // Append the list item to the movie list
         movieList.appendChild(listItem);
     });
 }
-
 
 
 // Fetch and display all movies when the page loads
