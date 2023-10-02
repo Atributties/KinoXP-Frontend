@@ -6,11 +6,16 @@ function getMovieDetails() {
     const urlParams = new URLSearchParams(window.location.search);
     const movieId = urlParams.get('id');
 
-    fetch(`http://localhost:8099/movie/${movieId}`)
-        .then((response) => response.json())
-        .then((movieArray) => {
+    fetch(`http://localhost:8099/movie/id/${movieId}`)
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then((movie) => {
             // Display movie details in the HTML
-            displayMovieDetails(movieArray);
+            displayMovieDetails(movie);
         })
         .catch((error) => {
             // Handle errors
@@ -20,47 +25,42 @@ function getMovieDetails() {
 }
 
 // Function to display movie details in the HTML
-function displayMovieDetails(movieArray) {
-    if (movieArray && movieArray.length > 0) {
-        // Extract the movie object from the array
-        const movie = movieArray[0];
+function displayMovieDetails(movie) {
+    const movieDetails = document.getElementById("movieDetails");
 
-        const movieDetails = document.getElementById("movieDetails");
+    // Clear previous movie details
+    movieDetails.innerHTML = "";
 
-        // Create elements to display movie details
-        const titleElement = document.createElement("h2");
-        titleElement.textContent = movie.title;
-        const imageElement = document.createElement("img");
-        imageElement.src = movie.imageUrl || "https://media.comicbook.com/files/img/default-movie.png";// Use default image if imageUrl is not available
-        imageElement.style.maxWidth = "100px"; // Set a fixed width for the image
+    // Create elements to display movie details
+    const titleElement = document.createElement("h2");
+    titleElement.textContent = movie.title;
 
-        const categoryElement = document.createElement("p");
-        categoryElement.textContent = `Category: ${movie.category}`;
+    const imageElement = document.createElement("img");
+    imageElement.src = movie.imageUrl || "https://media.comicbook.com/files/img/default-movie.png";// Use default image if imageUrl is not available
+    imageElement.style.maxWidth = "100px"; // Set a fixed width for the image
 
-        const ageLimitElement = document.createElement("p");
-        ageLimitElement.textContent = `Age Limit: ${movie.ageLimit}`;
+    const categoryElement = document.createElement("p");
+    categoryElement.textContent = `Category: ${movie.category}`;
 
-        const durationElement = document.createElement("p");
-        durationElement.textContent = `Duration: ${movie.duration} minutes`;
+    const ageLimitElement = document.createElement("p");
+    ageLimitElement.textContent = `Age Limit: ${movie.ageLimit}`;
 
-        const descriptionElement = document.createElement("p");
-        descriptionElement.textContent = `Description: ${movie.description}`;
+    const durationElement = document.createElement("p");
+    durationElement.textContent = `Duration: ${movie.duration} minutes`;
 
-        // Append elements to the movieDetails div
-        movieDetails.appendChild(titleElement);
-        movieDetails.appendChild(imageElement);
-        movieDetails.appendChild(categoryElement);
-        movieDetails.appendChild(ageLimitElement);
-        movieDetails.appendChild(durationElement);
-        movieDetails.appendChild(descriptionElement);
-    } else {
-        // Handle case where movieArray is empty or undefined
-        console.error("Movie details not found.");
-        alert("Movie details not found. Please try again.");
-    }
+    const descriptionElement = document.createElement("p");
+    descriptionElement.textContent = `Description: ${movie.description}`;
+
+    // Append elements to the movieDetails div
+    movieDetails.appendChild(titleElement);
+    movieDetails.appendChild(imageElement);
+    movieDetails.appendChild(categoryElement);
+    movieDetails.appendChild(ageLimitElement);
+    movieDetails.appendChild(durationElement);
+    movieDetails.appendChild(descriptionElement);
 }
-
 
 // Fetch and display movie details when the page loads
 document.addEventListener("DOMContentLoaded", getMovieDetails);
+
 

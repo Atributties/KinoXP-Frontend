@@ -39,3 +39,4 @@ function capitalizeFirstLetter(string) {
 }
 
 movieForm.addEventListener("submit", createMovie);
+
