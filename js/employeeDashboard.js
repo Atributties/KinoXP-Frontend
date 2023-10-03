@@ -14,6 +14,27 @@ function getAllMovies() {
             alert("Error fetching movies. Please try again.");
         });
 }
+function deleteMovie(id) {
+    fetch(`http://localhost:8080/movie/${id}`, {
+        method: "DELETE",
+    })
+        .then((response) => {
+            if (response.ok) {
+                console.log("Movie deleted successfully!");
+                alert("Movie deleted successfully!");
+                location.reload();
+            } else {
+                console.error("Error deleting movie. Server returned:", response.status, response.statusText);
+                alert("Error deleting movie. Please try again.");
+            }
+        })
+        .catch((error) => {
+            // Handle other errors (e.g., network issues)
+            console.error("Error deleting movie:", error);
+            alert("Error deleting movie. Please try again.");
+        });
+}
+
 
 // Function to display movies in the HTML
 function displayMovies(movies) {
@@ -49,6 +70,7 @@ function displayMovies(movies) {
         imageElement.alt = movie.title; // Set alt text for accessibility
         imageElement.style.width = "100px"; // Set a fixed width for the image
 
+
         // Append the image to the anchor
         anchorElement.appendChild(imageElement);
 
@@ -73,13 +95,26 @@ function displayMovies(movies) {
         durationElement.textContent = `Duration: ${movie.duration} minutes`;
         detailsDiv.appendChild(durationElement);
 
-        // Append detailsDiv to the anchor
+        // Create buttons for Update and Delete
+        const updateButton = document.createElement("button");
+        updateButton.textContent = "Update";
+        updateButton.onclick = () => {
+            // Handle update action, e.g., open a modal or navigate to an update page
+            // You can use movie.id to identify the movie being updated
+        };
+
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete";
+        deleteButton.onclick = () => {
+            const movieIdToDelete =movie.id;
+            debugger
+            deleteMovie(movieIdToDelete)
+        };
+
         anchorElement.appendChild(detailsDiv);
-
-        // Append the anchor to the list item
         listItem.appendChild(anchorElement);
-
-        // Append the list item to the movie list
+        listItem.appendChild(updateButton);
+        listItem.appendChild(deleteButton);
         movieList.appendChild(listItem);
     });
 }
@@ -90,5 +125,3 @@ document.getElementById("category").addEventListener("change", getAllMovies);
 
 // Fetch and display all movies when the page loads
 document.addEventListener("DOMContentLoaded", getAllMovies);
-
-

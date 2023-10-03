@@ -1,6 +1,6 @@
 // Fetch movies and populate the dropdown
 function fetchMovies() {
-    fetch("http://localhost:8099/movie/titles")
+    fetch("http://localhost:8080/movie/titles")
         .then(response => response.json())
         .then(movies => {
             const movieSelect = document.getElementById("movieSelect");
@@ -31,7 +31,7 @@ function createShowtime() {
     };
 
     // Send a POST request to create the showtime
-    fetch("http://localhost:8099/showtime", {
+    fetch("http://localhost:8080/showtime", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

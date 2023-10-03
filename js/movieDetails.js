@@ -6,7 +6,7 @@ function getMovieDetails() {
     const urlParams = new URLSearchParams(window.location.search);
     const movieId = urlParams.get('id');
 
-    fetch(`http://localhost:8099/movie/id/${movieId}`)
+    fetch(`http://localhost:8080/movie/id/${movieId}`)
         .then((response) => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -64,7 +64,7 @@ function displayMovieDetails(movie) {
 
 // Function to fetch and display showtimes for a specific movie
 function getShowtimesForMovie(movieId) {
-    fetch(`http://localhost:8099/showtime/movie/${movieId}`)
+    fetch(`http://localhost:8080/showtime/movie/${movieId}`)
         .then((response) => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
