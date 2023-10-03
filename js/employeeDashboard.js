@@ -106,10 +106,18 @@ function displayMovies(movies) {
         const deleteButton = document.createElement("button");
         deleteButton.textContent = "Delete";
         deleteButton.onclick = () => {
-            const movieIdToDelete =movie.id;
-            debugger
-            deleteMovie(movieIdToDelete)
+            const movieIdToDelete = movie.id;
+            const confirmMessage = `Are you sure you want to delete the movie "${movie.title}"?`;
+
+            // Show a confirmation dialog
+            const userConfirmed = window.confirm(confirmMessage);
+
+            // If the user confirms, proceed with deletion
+            if (userConfirmed) {
+                deleteMovie(movieIdToDelete);
+            }
         };
+
 
         anchorElement.appendChild(detailsDiv);
         listItem.appendChild(anchorElement);
