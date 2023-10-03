@@ -16,6 +16,8 @@ function getMovieDetails() {
         .then((movie) => {
             // Display movie details in the HTML
             displayMovieDetails(movie);
+            // Fetch and display showtimes for the movie
+            getShowtimesForMovie(movieId);
         })
         .catch((error) => {
             // Handle errors
@@ -60,7 +62,51 @@ function displayMovieDetails(movie) {
     movieDetails.appendChild(descriptionElement);
 }
 
+// Function to fetch and display showtimes for a specific movie
+function getShowtimesForMovie(movieId) {
+    fetch(`http://localhost:8099/showtime/movie/${movieId}`)
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then((showtimes) => {
+            // Display showtimes in the HTML
+            displayShowtimes(showtimes);
+        })
+        .catch((error) => {
+            // Handle errors
+            console.error("Error fetching showtimes:", error);
+            alert("Error fetching showtimes. Please try again.");
+        });
+}
+
+// Function to display showtimes in the HTML
+function displayShowtimes(showtimes) {
+    const showtimeContainer = document.getElementById("showtimeContainer");
+
+    // Create elements to display showtimes
+    const showtimesTitle = document.createElement("h3");
+    showtimesTitle.textContent = "Showtimes";
+
+    // Append title to the showtimeContainer
+    showtimeContainer.appendChild(showtimesTitle);
+
+    // Create a list to display showtimes
+    const showtimesList = document.createElement("ul");
+
+    // Iterate through showtimes and create list items
+    showtimes.forEach((showtime) => {
+        const showtimeItem = document.createElement("li");
+        showtimeItem.textContent = `${showtime.date} - ${showtime.time}`;
+        showtimesList.appendChild(showtimeItem);
+    });
+
+    // Append the list to the showtimeContainer
+    showtimeContainer.appendChild(showtimesList);
+}
+
 // Fetch and display movie details when the page loads
 document.addEventListener("DOMContentLoaded", getMovieDetails);
-
 
