@@ -1,29 +1,25 @@
+import {fetchAnyUrl, deleteObject} from "./module.js";
+
 console.log("I am in Movie Details!!");
 
-// Function to fetch and display details for a specific movie
-function getMovieDetails() {
-    // Extract movie ID from the URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const movieId = urlParams.get('id');
+const urlParams = new URLSearchParams(window.location.search);
+const movieId = urlParams.get('id');
+const movieUrl = "http://localhost:8080/movie"
+const showtimeUrl = "http://localhost:8080/showtime"
+let movie;
+let showtimes = []
 
-    fetch(`http://localhost:8080/movie/id/${movieId}`)
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then((movie) => {
-            // Display movie details in the HTML
-            displayMovieDetails(movie);
-            // Fetch and display showtimes for the movie
-            getShowtimesForMovie(movieId);
-        })
-        .catch((error) => {
-            // Handle errors
-            console.error("Error fetching movie details:", error);
-            alert("Error fetching movie details. Please try again.");
-        });
+
+async function fetchMovie() {
+    const updateUrl = movieUrl + "/" + movieId;
+    try {
+        movie = await fetchAnyUrl(updateUrl);
+        displayMovieDetails(movie);
+        // Fetch and display showtimes for the movie
+        fetchShowtimes();
+    } catch (error) {
+        console.error("Error fetching movie:", error);
+    }
 }
 
 // Function to display movie details in the HTML
@@ -63,23 +59,14 @@ function displayMovieDetails(movie) {
 }
 
 // Function to fetch and display showtimes for a specific movie
-function getShowtimesForMovie(movieId) {
-    fetch(`http://localhost:8080/showtime/movie/${movieId}`)
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then((showtimes) => {
-            // Display showtimes in the HTML
-            displayShowtimes(showtimes);
-        })
-        .catch((error) => {
-            // Handle errors
-            console.error("Error fetching showtimes:", error);
-            alert("Error fetching showtimes. Please try again.");
-        });
+async function fetchShowtimes() {
+    const getShowtimesUrl = showtimeUrl + "/" + movieId;
+    try {
+        showtimes = await fetchAnyUrl(getShowtimesUrl); // Await the Promise
+        displayShowtimes(showtimes);
+    } catch (error) {
+        console.error("Error fetching movie:", error);
+    }
 }
 
 // Function to display showtimes in the HTML
@@ -108,5 +95,5 @@ function displayShowtimes(showtimes) {
 }
 
 // Fetch and display movie details when the page loads
-document.addEventListener("DOMContentLoaded", getMovieDetails);
+document.addEventListener("DOMContentLoaded", fetchMovie);
 

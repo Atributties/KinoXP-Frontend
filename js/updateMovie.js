@@ -1,18 +1,26 @@
+import { fetchAnyUrl, deleteObject } from "./module.js";
+
 console.log("i am in update Movie");
 
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get('id');
 const updateMovieForm = document.getElementById("updateMovieForm");
+const url = "http://localhost:8080/movie";
+let movie;
 
-fetch(`http://localhost:8080/movie/id/${id}`)
-    .then((response) => response.json())
-    .then((movie) => {
+async function fetchMovie() {
+    const updateUrl = url + "/" + id;
+    try {
+        movie = await fetchAnyUrl(updateUrl); // Await the Promise
         populateFormWithMovieDetails(movie);
-    })
-    .catch((error) => {
-        // Handle errors
-        console.error("Error fetching movie details:", error);
-    });
+    } catch (error) {
+        console.error("Error fetching movie:", error);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', async function () {
+    await fetchMovie();
+});
 
 const titleInput = document.getElementById("title");
 const imageUrlInput = document.getElementById("imageUrl");

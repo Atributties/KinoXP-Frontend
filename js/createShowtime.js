@@ -1,56 +1,61 @@
-// Fetch movies and populate the dropdown
-function fetchMovies() {
-    fetch("http://localhost:8080/movie/titles")
-        .then(response => response.json())
-        .then(movies => {
-            const movieSelect = document.getElementById("movieSelect");
-            movies.forEach(movie => {
-                const option = document.createElement("option");
-                option.value = movie.id;
-                option.textContent = movie.title;
-                movieSelect.appendChild(option);
-            });
-        })
-        .catch(error => {
-            console.error("Error fetching movies:", error);
-            alert("Error fetching movies. Please try again.");
-        });
+import { fetchAnyUrl, postObjectAsJson } from "./module.js";
+const movieUrl = "http://localhost:8080/movie"
+const showtimeUrl = "http://localhost:8080/showtime"
+let movies = [];
+const movieSelect = document.getElementById("movieSelect");
+const showtimeForm = document.getElementById("showtimeForm");
+
+
+// Function to fetch and display all movies
+async function fetchMovies() {
+    try {
+        movies = await fetchAnyUrl(movieUrl); // Await the Promise
+        await fillDropdownWithMovieTitles(movies)
+    } catch (error) {
+        console.error("Error fetching movie:", error);
+    }
 }
 
-// Function to create a showtime
-function createShowtime() {
+
+async function fillDropdownWithMovieTitles(movies) {
+    movies.forEach(movie => {
+        const option = document.createElement("option");
+        option.value = movie.id;
+        option.textContent = movie.title;
+        movieSelect.appendChild(option);
+    });
+}
+
+
+async function createShowtime(event) {
+    event.preventDefault();
+
     const movieId = document.getElementById("movieSelect").value;
     const date = document.getElementById("dateInput").value;
     const time = document.getElementById("timeInput").value;
 
-    const showtimeData = {
-        id: 0, // You may need to generate a unique ID on the server side
+    const showtime = {
         date: date,
         time: time,
-        movie: { id: parseInt(movieId) } // Movie object with just the ID
+        movie: { id: movieId}
     };
 
-    // Send a POST request to create the showtime
-    fetch("http://localhost:8080/showtime", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(showtimeData)
-    })
-        .then(response => response.json())
-        .then(createdShowtime => {
-            console.log("Showtime created:", createdShowtime);
-            alert("Showtime created successfully!");
-        })
-        .catch(error => {
-            console.error("Error creating showtime:", error);
-            alert("Error creating showtime. Please try again.");
-        });
+    try {
+        const resp = await postObjectAsJson(showtimeUrl, showtime, "POST");
+        console.log("Showtime created successfully:", resp);
+        showtimeForm.reset(); // Reset the form
+        return resp;
+    } catch (error) {
+        console.error("Error creating showtime:", error);
+        return null; // Handle the error as needed
+    }
 }
+
 
 // Fetch movies when the page loads
 document.addEventListener("DOMContentLoaded", fetchMovies);
+
+showtimeForm.addEventListener("submit", createShowtime);
 
 
 

@@ -5,9 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8aba5531-4f90-408c-a6f0-85f8bb80f93b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/css/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/createMovie.html" beforeDir="false" afterPath="$PROJECT_DIR$/createMovie.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/createShowtime.html" beforeDir="false" afterPath="$PROJECT_DIR$/createShowtime.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/allMovies.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/allMovies.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/createMovie.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/createMovie.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/createShowtime.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/createShowtime.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/employeeDashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/employeeDashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/module.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/module.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/movieDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/movieDetails.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/updateMovie.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/updateMovie.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +31,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="develop" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="2WCLncYkE7wQemt30ekUjMNwgaO" />
@@ -38,12 +50,13 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "KN-33-add-a-employee-page-from-dashboard",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -57,6 +70,7 @@
       <updated>1696231784371</updated>
       <workItem from="1696231792523" duration="1000" />
       <workItem from="1696239661801" duration="1668000" />
+      <workItem from="1696408727414" duration="21346000" />
     </task>
     <servers />
   </component>
