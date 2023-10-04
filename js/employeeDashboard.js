@@ -11,6 +11,15 @@ async function deleteMovie(id) {
         const resp = await restDelete(url)
         const body = await resp.text();
         alert(body)
+        const confirmMessage = `Are you sure you want to delete the movie "${movie.title}"?`;
+
+        // Show a confirmation dialog
+        const userConfirmed = window.confirm(confirmMessage);
+
+        // If the user confirms, proceed with deletion
+        if (userConfirmed) {
+            deleteMovie(movieToDelete);
+        }
 
     } catch (error) {
         alert(error.message);
@@ -20,8 +29,7 @@ async function deleteMovie(id) {
 
 
 // Function to display movies in the HTML
-function displayMovies() {
-    const movies = fetchAnyUrl(fetchMoviesUrl)
+function displayMovies(movies) {
     const movieList = document.getElementById("movieList");
 
     // Clear previous movie list
@@ -51,9 +59,8 @@ function displayMovies() {
         // Create an image element and set its source to the movie's imageUrl
         const imageElement = document.createElement("img");
         imageElement.src = movie.imageUrl || "https://media.comicbook.com/files/img/default-movie.png"; // Use default image if imageUrl is not available
-        imageElement.alt = movie.title; // Set alt text for accessibility
-        imageElement.style.width = "100px"; // Set a fixed width for the image
-
+        imageElement.alt = movie.title;
+        imageElement.style.width = "100px";
 
         // Append the image to the anchor
         anchorElement.appendChild(imageElement);
@@ -90,15 +97,10 @@ function displayMovies() {
         const deleteButton = document.createElement("button");
         deleteButton.textContent = "Delete";
         deleteButton.onclick = () => {
-            const movieToDelete = movie.id;
             const confirmMessage = `Are you sure you want to delete the movie "${movie.title}"?`;
-
-            // Show a confirmation dialog
             const userConfirmed = window.confirm(confirmMessage);
-
-            // If the user confirms, proceed with deletion
             if (userConfirmed) {
-                deleteMovie(movieToDelete);
+                deleteMovie(movie.id);
             }
         };
 
@@ -111,15 +113,13 @@ function displayMovies() {
     });
 }
 
+let movies = [];
 async function fetchMovies() {
-    getAllMovies()
-    displayMovies()
+    movies = await fetchAnyUrl(movieUrl)
+    displayMovies(movies)
 
 }
 
-// Event listener for dropdown changes
-document.getElementById("ageLimit").addEventListener("change", getAllMovies);
-document.getElementById("category").addEventListener("change", getAllMovies);
 
 // Fetch and display all movies when the page loads
 document.addEventListener("DOMContentLoaded", fetchMovies);
