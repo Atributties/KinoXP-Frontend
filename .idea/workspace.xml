@@ -4,17 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8aba5531-4f90-408c-a6f0-85f8bb80f93b" name="Changes" comment="">
+    <list default="true" id="8aba5531-4f90-408c-a6f0-85f8bb80f93b" name="Changes" comment="Fixed some refactor and added the dropdown to pick some off the enums in category and agelimits">
+      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/createMovie.html" beforeDir="false" afterPath="$PROJECT_DIR$/createMovie.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/createShowtime.html" beforeDir="false" afterPath="$PROJECT_DIR$/createShowtime.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/allMovies.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/allMovies.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/createMovie.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/createMovie.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/createShowtime.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/createShowtime.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/employeeDashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/employeeDashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/module.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/module.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KinoXP-Frontend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/KinoXP-Frontend.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/empoloyeeDashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/empoloyeeDashboard.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/movieDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/movieDetails.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/updateMovie.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/updateMovie.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +44,7 @@
     "DefaultHtmlFileTemplate": "HTML File",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "KN-33-add-a-employee-page-from-dashboard",
     "list.type.of.created.stylesheet": "CSS",
@@ -70,8 +66,16 @@
       <updated>1696231784371</updated>
       <workItem from="1696231792523" duration="1000" />
       <workItem from="1696239661801" duration="1668000" />
-      <workItem from="1696408727414" duration="21346000" />
+      <workItem from="1696408727414" duration="25469000" />
     </task>
+    <task id="LOCAL-00001" summary="Fixed some refactor and added the dropdown to pick some off the enums in category and agelimits">
+      <created>1696440989103</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1696440989103</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -87,5 +91,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Fixed some refactor and added the dropdown to pick some off the enums in category and agelimits" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed some refactor and added the dropdown to pick some off the enums in category and agelimits" />
   </component>
 </project>

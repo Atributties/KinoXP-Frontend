@@ -3,44 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Kino XP Employee Frontpage - All Movies</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
 <h1>Employee Dashboard - All Movies</h1>
 
-<!-- Dropdown for Age Limit -->
-<label for="ageLimit">Select Age Limit:</label>
-<select id="ageLimit">
-    <option value="">All</option>
-    <option value="G">G</option>
-    <option value="PG">PG</option>
-    <option value="PG_13">PG-13</option>
-    <option value="R">R</option>
-</select>
+<label for="category">Category:</label>
+<select id="category" name="category" required>
+    <!-- Options will be dynamically populated using JavaScript -->
+</select><br><br>
 
-<!-- Dropdown for Category -->
-<label for="category">Select Category:</label>
-<select id="category">
-    <option value="">All</option>
-    <option value="ACTION">Action</option>
-    <option value="COMEDY">Comedy</option>
-    <option value="DRAMA">Drama</option>
-    <option value="ROMANCE">Romance</option>
-    <option value="HORROR">Horror</option>
-    <option value="SCIENCE_FICTION">Science Fiction</option>
-    <option value="FANTASY">Fantasy</option>
-    <option value="ANIMATION">Animation</option>
-    <option value="THRILLER">Thriller</option>
-    <option value="CRIME">Crime</option>
-    <option value="ADVENTURE">Adventure</option>
-    <option value="MYSTERY">Mystery</option>
-    <option value="DOCUMENTARY">Documentary</option>
-    <option value="FAMILY">Family</option>
-</select>
-
+<label for="ageLimit">Age Limit:</label>
+<select id="ageLimit" name="ageLimit" required>
+    <!-- Options will be dynamically populated using JavaScript -->
+</select><br><br>
 
 <ul id="movieList"></ul>
 
 <script type="module" src="js/employeeDashboard.js"></script>
 </body>
 </html>
+
+
+
+
+

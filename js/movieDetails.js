@@ -16,7 +16,7 @@ async function fetchMovie() {
         movie = await fetchAnyUrl(updateUrl);
         displayMovieDetails(movie);
         // Fetch and display showtimes for the movie
-        fetchShowtimes();
+        await fetchShowtimes();
     } catch (error) {
         console.error("Error fetching movie:", error);
     }
