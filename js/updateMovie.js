@@ -7,7 +7,6 @@ const updateMovieForm = document.getElementById("updateMovieForm");
 fetch(`http://localhost:8080/movie/id/${id}`)
     .then((response) => response.json())
     .then((movie) => {
-        debugger
         populateFormWithMovieDetails(movie);
     })
     .catch((error) => {
@@ -23,13 +22,36 @@ const durationInput = document.getElementById("duration");
 const descriptionTextarea = document.getElementById("description");
 
 function populateFormWithMovieDetails(movie) {
+    console.log("Movie details:", movie);
     titleInput.value = movie.title;
     imageUrlInput.value = movie.imageUrl || "";
     categorySelect.value = movie.category;
-    ageLimitSelect.value = movie.ageLimit;
+
+    // Iterate through options and set selected based on age limit
+    // Iterate through options and set selected based on age limit
+    for (let i = 0; i < ageLimitSelect.options.length; i++) {
+        if (parseInt(ageLimitSelect.options[i].value) === movie.ageLimit) {
+            ageLimitSelect.options[i].selected = true;
+            break;
+        }
+    }
+
+
     durationInput.value = movie.duration;
     descriptionTextarea.value = movie.description;
+
+    console.log("Form values set:", {
+        title: titleInput.value,
+        imageUrl: imageUrlInput.value,
+        category: categorySelect.value,
+        ageLimit: ageLimitSelect.value,
+        duration: durationInput.value,
+        description: descriptionTextarea.value,
+    });
 }
+
+
+
 
 function updateMovie(id) {
     const apiUrl = `http://localhost:8080/movie/${id}`;
