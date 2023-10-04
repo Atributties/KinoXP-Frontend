@@ -1,43 +1,27 @@
+import {fetchAnyUrl, restDelete} from "./module.js";
+
 console.log("I am in All Movies!!");
 
-// Function to fetch and display all movies
-function getAllMovies() {
-    fetch("http://localhost:8080/movie")
-        .then((response) => response.json())
-        .then((movies) => {
-            // Display movies in the HTML
-            displayMovies(movies);
-        })
-        .catch((error) => {
-            // Handle errors
-            console.error("Error fetching movies:", error);
-            alert("Error fetching movies. Please try again.");
-        });
-}
-function deleteMovie(id) {
-    fetch(`http://localhost:8080/movie/${id}`, {
-        method: "DELETE",
-    })
-        .then((response) => {
-            if (response.ok) {
-                console.log("Movie deleted successfully!");
-                alert("Movie deleted successfully!");
-                location.reload();
-            } else {
-                console.error("Error deleting movie. Server returned:", response.status, response.statusText);
-                alert("Error deleting movie. Please try again.");
-            }
-        })
-        .catch((error) => {
-            // Handle other errors (e.g., network issues)
-            console.error("Error deleting movie:", error);
-            alert("Error deleting movie. Please try again.");
-        });
+const movieUrl = "http://localhost:8080/movie";
+const fetchMoviesUrl = "http://localhost:8080/movie/id"
+
+async function deleteMovie(id) {
+    try {
+        const url = movieUrl + "/" + id;
+        const resp = await restDelete(url)
+        const body = await resp.text();
+        alert(body)
+
+    } catch (error) {
+        alert(error.message);
+        console.log(error);
+    }
 }
 
 
 // Function to display movies in the HTML
-function displayMovies(movies) {
+function displayMovies() {
+    const movies = fetchAnyUrl(fetchMoviesUrl)
     const movieList = document.getElementById("movieList");
 
     // Clear previous movie list
@@ -99,14 +83,14 @@ function displayMovies(movies) {
         const updateButton = document.createElement("button");
         updateButton.textContent = "Update";
         updateButton.onclick = () => {
-            // Handle update action, e.g., open a modal or navigate to an update page
-            // You can use movie.id to identify the movie being updated
+            const movieIdToUpdate = movie.id;
+            window.location.href = `updateMovie.html?id=${movieIdToUpdate}`;
         };
 
         const deleteButton = document.createElement("button");
         deleteButton.textContent = "Delete";
         deleteButton.onclick = () => {
-            const movieIdToDelete = movie.id;
+            const movieToDelete = movie.id;
             const confirmMessage = `Are you sure you want to delete the movie "${movie.title}"?`;
 
             // Show a confirmation dialog
@@ -114,7 +98,7 @@ function displayMovies(movies) {
 
             // If the user confirms, proceed with deletion
             if (userConfirmed) {
-                deleteMovie(movieIdToDelete);
+                deleteMovie(movieToDelete);
             }
         };
 
@@ -127,9 +111,15 @@ function displayMovies(movies) {
     });
 }
 
+async function fetchMovies() {
+    getAllMovies()
+    displayMovies()
+
+}
+
 // Event listener for dropdown changes
 document.getElementById("ageLimit").addEventListener("change", getAllMovies);
 document.getElementById("category").addEventListener("change", getAllMovies);
 
 // Fetch and display all movies when the page loads
-document.addEventListener("DOMContentLoaded", getAllMovies);
+document.addEventListener("DOMContentLoaded", fetchMovies);
