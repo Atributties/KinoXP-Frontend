@@ -5,7 +5,7 @@
 </head>
 <body>
 <h1>Update Movie</h1>
-<form id="updateMovieForm">
+<form id="updateMovieForm" method="post">
     <!-- Include a hidden input field for movie ID -->
     <input type="hidden" id="movieId" name="movieId">
 
@@ -84,7 +84,7 @@
     <label for="description">Description:</label>
     <textarea id="description" name="description" required></textarea><br><br>
 
-    <input type="submit" value="Update Movie", id="updateButton">
+    <input type="submit" value="Update Movie" id="updateButton">
 </form>
 </body>
 <!-- Include your JavaScript file for handling the update functionality -->
