@@ -2,7 +2,6 @@ console.log("i am in update Movie");
 
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get('id');
-const updateButton = document.getElementById("updateButton")
 const updateMovieForm = document.getElementById("updateMovieForm");
 
 fetch(`http://localhost:8080/movie/id/${id}`)
