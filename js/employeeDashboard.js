@@ -1,31 +1,8 @@
-import {fetchAnyUrl, restDelete} from "./module.js";
+import {fetchAnyUrl, deleteObject} from "./module.js";
 
 console.log("I am in All Movies!!");
 
-const movieUrl = "http://localhost:8080/movie";
-const fetchMoviesUrl = "http://localhost:8080/movie/id"
-
-function deleteMovie(id) {
-    fetch(`http://localhost:8080/movie/${id}`, {
-        method: "DELETE",
-    })
-        .then((response) => {
-            if (response.ok) {
-                console.log("Movie deleted successfully!");
-                alert("Movie deleted successfully!");
-                location.reload();
-            } else {
-                console.error("Error deleting movie. Server returned:", response.status, response.statusText);
-                alert("Error deleting movie. Please try again.");
-            }
-        })
-        .catch((error) => {
-            // Handle other errors (e.g., network issues)
-            console.error("Error deleting movie:", error);
-            alert("Error deleting movie. Please try again.");
-        });
-}
-
+const url = "http://localhost:8080/movie";
 
 // Function to display movies in the HTML
 function displayMovies(movies) {
@@ -96,15 +73,13 @@ function displayMovies(movies) {
         const deleteButton = document.createElement("button");
         deleteButton.textContent = "Delete";
         deleteButton.onclick = () => {
-            const movieIdToDelete = movie.id;
             const confirmMessage = `Are you sure you want to delete the movie "${movie.title}"?`;
-
             // Show a confirmation dialog
             const userConfirmed = window.confirm(confirmMessage);
-
             // If the user confirms, proceed with deletion
             if (userConfirmed) {
-                deleteMovie(movieIdToDelete);
+                deleteObject(movie, url);
+                listItem.remove()
             }
         };
 
@@ -119,7 +94,7 @@ function displayMovies(movies) {
 
 let movies = [];
 async function fetchMovies() {
-    movies = await fetchAnyUrl(movieUrl)
+    movies = await fetchAnyUrl(url)
     displayMovies(movies)
 
 }

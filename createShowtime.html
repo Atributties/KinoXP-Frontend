@@ -9,25 +9,26 @@
 <body>
 <h1>Create Showtime</h1>
 
-<!-- Movie Dropdown -->
-<label for="movieSelect">Select Movie:</label>
-<select id="movieSelect">
-  <!-- Options will be populated dynamically using JavaScript -->
-</select>
+<!-- Create a form for creating showtimes -->
+<form id="showtimeForm">
+  <!-- Movie Dropdown -->
+  <label for="movieSelect">Select Movie:</label>
+  <select id="movieSelect" name="movie">
+    <!-- Options will be populated dynamically using JavaScript -->
+  </select>
 
-<!-- Date and Time Input -->
-<label for="dateInput">Date:</label>
-<input type="date" id="dateInput">
+  <!-- Date and Time Input -->
+  <label for="dateInput">Date:</label>
+  <input type="date" id="dateInput" name="date" required>
 
-<label for="timeInput">Time:</label>
-<input type="time" id="timeInput">
+  <label for="timeInput">Time:</label>
+  <input type="time" id="timeInput" name="time" required>
 
-<!-- Button to Create Showtime -->
-<button onclick="createShowtime()">Create Showtime</button>
+  <!-- Button to Create Showtime -->
+  <button type="submit">Create Showtime</button>
+</form>
 
 <!-- Include any necessary JavaScript files -->
 <script type="module" src="js/createShowtime.js"></script>
 </body>
 </html>
-
-
