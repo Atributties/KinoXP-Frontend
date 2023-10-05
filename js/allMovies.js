@@ -1,6 +1,7 @@
 import { fetchAnyUrl, deleteObject } from "./module.js";
 
 console.log("I am in All Movies!!");
+const gotoEmployeeDashBoardButton = document.getElementById("gotoEmployeeDashboard");
 
 const url = "http://localhost:8080/movie";
 let movies = []
@@ -131,4 +132,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-
+gotoEmployeeDashBoardButton.addEventListener("click", function(){
+    window.location.href='empoloyeeDashboard.html';
+});
+a
