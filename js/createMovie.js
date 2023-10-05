@@ -9,7 +9,6 @@ const ageLimitsUrl = "http://localhost:8080/age-limits";
 
 async function createMovie(event) {
     event.preventDefault();
-debugger
     const movie = {
         title: capitalizeFirstLetter(document.getElementById("title").value),
         imageUrl: document.getElementById("imageUrl").value,

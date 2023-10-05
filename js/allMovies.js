@@ -2,6 +2,7 @@ import { fetchAnyUrl, deleteObject } from "./module.js";
 
 console.log("I am in All Movies!!");
 const gotoEmployeeDashBoardButton = document.getElementById("gotoEmployeeDashboard");
+const loginButton = document.getElementById("login-button");
 
 const url = "http://localhost:8080/movie";
 let movies = []
@@ -135,4 +136,9 @@ document.addEventListener("DOMContentLoaded", function() {
 gotoEmployeeDashBoardButton.addEventListener("click", function(){
     window.location.href='empoloyeeDashboard.html';
 });
-a
+
+document.addEventListener("DOMContentLoaded", function () {
+    loginButton.onclick = () => {
+        window.location.href = "login.html";
+    };
+});

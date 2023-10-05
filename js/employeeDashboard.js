@@ -92,6 +92,8 @@ function displayMovies(movies) {
     });
 }
 
+
+
 let movies = [];
 async function fetchMovies() {
     movies = await fetchAnyUrl(url)
@@ -102,3 +104,10 @@ async function fetchMovies() {
 
 // Fetch and display all movies when the page loads
 document.addEventListener("DOMContentLoaded", fetchMovies);
+
+document.addEventListener("DOMContentLoaded", function () {
+    const loginButton = document.getElementById("login-button");
+    loginButton.onclick = () => {
+        window.location.href = "login.html";
+    };
+});
