@@ -5,7 +5,6 @@ const signUpForm = document.getElementById("signup-form");
 
 
 async function createUser(event) {
-    debugger
     event.preventDefault();
     try{
         const user = {
@@ -18,8 +17,6 @@ async function createUser(event) {
         };
 
         const resp = await postObjectAsJson(url, user, "POST");
-        const phoneNumber = document.getElementById("phone").value;
-        console.log("Phone Number:", phoneNumber);
         signUpForm.reset(); // Reset the form
         return resp;
 
