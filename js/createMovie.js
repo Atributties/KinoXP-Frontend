@@ -16,6 +16,7 @@ async function createMovie(event) {
         description: document.getElementById("description").value,
     };
     const resp = await postObjectAsJson(url, movie, "POST")
+    window.location.href = "empoloyeeDashboard.html";
     movieForm.reset(); // Reset the form
     return resp;
 

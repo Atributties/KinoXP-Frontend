@@ -43,6 +43,7 @@ async function createShowtime(event) {
     try {
         const resp = await postObjectAsJson(showtimeUrl, showtime, "POST");
         console.log("Showtime created successfully:", resp);
+        window.location.href = "empoloyeeDashboard.html";
         showtimeForm.reset(); // Reset the form
         return resp;
     } catch (error) {
