@@ -5,7 +5,7 @@ console.log("I am in Movie Details!!");
 const urlParams = new URLSearchParams(window.location.search);
 const movieId = urlParams.get('id');
 const movieUrl = "http://localhost:8080/movie"
-const showtimeUrl = "http://localhost:8080/showtime"
+const showtimeUrl = "http://localhost:8080/showtime/movie"
 let movie;
 let showtimes = []
 
@@ -59,19 +59,28 @@ function displayMovieDetails(movie) {
 }
 
 // Function to fetch and display showtimes for a specific movie
+// Function to fetch and display showtimes for a specific movie
 async function fetchShowtimes() {
     const getShowtimesUrl = showtimeUrl + "/" + movieId;
     try {
         showtimes = await fetchAnyUrl(getShowtimesUrl); // Await the Promise
+
+        // Log the showtimes to the console
+        console.log("Fetched Showtimes:", showtimes);
+
         displayShowtimes(showtimes);
     } catch (error) {
-        console.error("Error fetching movie:", error);
+        console.error("Error fetching showtimes:", error);
     }
 }
+
 
 // Function to display showtimes in the HTML
 function displayShowtimes(showtimes) {
     const showtimeContainer = document.getElementById("showtimeContainer");
+
+    // Clear previous showtime content
+    showtimeContainer.innerHTML = "";
 
     // Create elements to display showtimes
     const showtimesTitle = document.createElement("h3");
@@ -93,6 +102,7 @@ function displayShowtimes(showtimes) {
     // Append the list to the showtimeContainer
     showtimeContainer.appendChild(showtimesList);
 }
+
 
 // Fetch and display movie details when the page loads
 document.addEventListener("DOMContentLoaded", fetchMovie);
