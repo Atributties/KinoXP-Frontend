@@ -141,12 +141,16 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-gotoEmployeeDashBoardButton.addEventListener("click", function(){
-    window.location.href='empoloyeeDashboard.html';
-});
-
 document.addEventListener("DOMContentLoaded", function () {
+    const loginButton = document.getElementById("login-button");
+    const gotoEmployeeDashboardButton = document.getElementById("gotoEmployeeDashboard");
+
     loginButton.onclick = () => {
         window.location.href = "login.html";
     };
+
+    gotoEmployeeDashboardButton.onclick = () => {
+        window.location.href = "empoloyeeDashboard.html"; // Corrected destination
+    };
 });
+

@@ -30,7 +30,7 @@ async function login(event) {
                     if (userRole === "CUSTOMER") {
                         window.location.href = "costumerPage.html";
                     } else if (userRole === "ADMIN" || userRole === "Employee") {
-                        window.location.href = "index.html";
+                        window.location.href = "employeePage.html";
                     } else {
                         alert('Unknown role. Unable to redirect.');
                     }
