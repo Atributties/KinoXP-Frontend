@@ -1,4 +1,4 @@
-import {fetchAnyUrl, deleteObject, createElement} from "./module.js";
+import {fetchAnyUrl, deleteObject, createElement, showMovieDetails} from "./module.js";
 import {fetchAgeLimits, fetchMovieCategories} from "./moduleFetchEnums.js";
 
 console.log("I am in All Movies!!");
@@ -28,7 +28,7 @@ function createMovieList(movie) {
     const anchorElement = createMovieLink(movie);
 
     // Create a div for movie details
-    const detailsDiv = createMovieDetails(movie);
+    const detailsDiv = showMovieDetails(movie);
 
     // Append detailsDiv to the anchor
     anchorElement.appendChild(detailsDiv);
@@ -57,21 +57,6 @@ function createMovieImage(movie) {
     imageElement.style.width = "100px"; // Set a fixed width for the image
 
     return imageElement;
-}
-
-// Function to create movie details
-function createMovieDetails(movie) {
-    const detailsDiv = document.createElement("div");
-
-    // Append title to detailsDiv
-    detailsDiv.appendChild(createElement("p", movie.title));
-
-    // Append category, age limit, and duration under the title
-    detailsDiv.appendChild(createElement("p", `Category: ${movie.category}`));
-    detailsDiv.appendChild(createElement("p", `Age Limit: ${movie.ageLimit}`));
-    detailsDiv.appendChild(createElement("p", `Duration: ${movie.duration} minutes`));
-
-    return detailsDiv;
 }
 
 // Update displayMovies to use the new functions

@@ -1,4 +1,4 @@
-import {fetchAnyUrl, deleteObject, createElement} from "./module.js";
+import {fetchAnyUrl, deleteObject, createElement, showMovieDetails} from "./module.js";
 
 console.log("I am in All Movies!!");
 
@@ -41,17 +41,6 @@ function displayMovies(movies) {
         // Append the image to the anchor
         anchorElement.appendChild(imageElement);
 
-        // Create a div for movie details
-        const detailsDiv = document.createElement("div");
-
-        // Append title to detailsDiv
-        detailsDiv.appendChild(createElement("p",movie.title));
-
-        // Append category, age limit, and duration under the title
-        detailsDiv.appendChild(createElement("p",`Category: ${movie.category}`));
-        detailsDiv.appendChild(createElement("p",`Age Limit: ${movie.ageLimit}`));
-        detailsDiv.appendChild(createElement("p",`Duration: ${movie.duration} minutes`));
-
         // Create buttons for Update and Delete
         const updateButton = document.createElement("button");
         updateButton.textContent = "Update";
@@ -73,8 +62,7 @@ function displayMovies(movies) {
             }
         };
 
-
-        anchorElement.appendChild(detailsDiv);
+        anchorElement.appendChild(showMovieDetails(movie));
         listItem.appendChild(anchorElement);
         listItem.appendChild(updateButton);
         listItem.appendChild(deleteButton);
