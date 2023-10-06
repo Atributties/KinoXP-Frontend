@@ -1,4 +1,4 @@
-import { fetchAnyUrl, deleteObject } from "./module.js";
+import {fetchAnyUrl, deleteObject, createElement} from "./module.js";
 import {fetchAgeLimits, fetchMovieCategories} from "./moduleFetchEnums.js";
 
 console.log("I am in All Movies!!");
@@ -64,21 +64,14 @@ function createMovieDetails(movie) {
     const detailsDiv = document.createElement("div");
 
     // Append title to detailsDiv
-    detailsDiv.appendChild(createMovieElement("p", movie.title));
+    detailsDiv.appendChild(createElement("p", movie.title));
 
     // Append category, age limit, and duration under the title
-    detailsDiv.appendChild(createMovieElement("p", `Category: ${movie.category}`));
-    detailsDiv.appendChild(createMovieElement("p", `Age Limit: ${movie.ageLimit}`));
-    detailsDiv.appendChild(createMovieElement("p", `Duration: ${movie.duration} minutes`));
+    detailsDiv.appendChild(createElement("p", `Category: ${movie.category}`));
+    detailsDiv.appendChild(createElement("p", `Age Limit: ${movie.ageLimit}`));
+    detailsDiv.appendChild(createElement("p", `Duration: ${movie.duration} minutes`));
 
     return detailsDiv;
-}
-
-// Helper function to create elements with a given type and text
-function createMovieElement(elementType, textContent) {
-    const element = document.createElement(elementType);
-    element.textContent = textContent;
-    return element;
 }
 
 // Update displayMovies to use the new functions

@@ -1,4 +1,4 @@
-import {fetchAnyUrl, deleteObject} from "./module.js";
+import {fetchAnyUrl, deleteObject, createElement} from "./module.js";
 
 console.log("I am in All Movies!!");
 
@@ -45,22 +45,12 @@ function displayMovies(movies) {
         const detailsDiv = document.createElement("div");
 
         // Append title to detailsDiv
-        const titleElement = document.createElement("p");
-        titleElement.textContent = movie.title;
-        detailsDiv.appendChild(titleElement);
+        detailsDiv.appendChild(createElement("p",movie.title));
 
         // Append category, age limit, and duration under the title
-        const categoryElement = document.createElement("p");
-        categoryElement.textContent = `Category: ${movie.category}`;
-        detailsDiv.appendChild(categoryElement);
-
-        const ageLimitElement = document.createElement("p");
-        ageLimitElement.textContent = `Age Limit: ${movie.ageLimit}`;
-        detailsDiv.appendChild(ageLimitElement);
-
-        const durationElement = document.createElement("p");
-        durationElement.textContent = `Duration: ${movie.duration} minutes`;
-        detailsDiv.appendChild(durationElement);
+        detailsDiv.appendChild(createElement("p",`Category: ${movie.category}`));
+        detailsDiv.appendChild(createElement("p",`Age Limit: ${movie.ageLimit}`));
+        detailsDiv.appendChild(createElement("p",`Duration: ${movie.duration} minutes`));
 
         // Create buttons for Update and Delete
         const updateButton = document.createElement("button");

@@ -39,5 +39,23 @@ async function deleteObject(object, url) {
 function fetchAnyUrl(url) {
     return fetch(url).then(response => response.json())
 }
+function createElement(elementType, textContent) {
+    const element = document.createElement(elementType);
+    element.textContent = textContent;
+    return element;
+}
+function showMovieDetails(movie) {
+    const detailsDiv = document.createElement("div");
 
-export {postObjectAsJson, fetchAnyUrl,restDelete, deleteObject}
+    // Append title to detailsDiv
+    detailsDiv.appendChild(createElement("p", movie.title));
+
+    // Append category, age limit, and duration under the title
+    detailsDiv.appendChild(createElement("p", `Category: ${movie.category}`));
+    detailsDiv.appendChild(createElement("p", `Age Limit: ${movie.ageLimit}`));
+    detailsDiv.appendChild(createElement("p", `Duration: ${movie.duration} minutes`));
+
+    return detailsDiv;
+}
+
+export {postObjectAsJson, fetchAnyUrl,restDelete, deleteObject, createElement, showMovieDetails}
