@@ -1,7 +1,9 @@
 import { fetchAnyUrl, deleteObject } from "./module.js";
+import {fetchAgeLimits, fetchMovieCategories} from "./moduleFetchEnums.js";
 
 console.log("I am in All Movies!!");
 const gotoEmployeeDashBoardButton = document.getElementById("gotoEmployeeDashboard");
+const loginButton = document.getElementById("login-button");
 
 const url = "http://localhost:8080/movie";
 let movies = []
@@ -95,30 +97,37 @@ function displayMovies(movies) {
 
 // Function to filter movies based on selected values
 function filterMovies(movies) {
-    // Get selected values from dropdowns
-    const selectedAgeLimit = document.getElementById("ageLimit").value;
     const selectedCategory = document.getElementById("category").value;
+    const selectedAgeLimit = document.getElementById("ageLimit").value;
 
-    // Filter movies based on selected values
-    const filteredMovies = movies.filter(movie => {
-        // Filter based on selectedAgeLimit (if selected) and selectedCategory (if selected)
-        return (!selectedAgeLimit || movie.ageLimit === selectedAgeLimit) &&
-            (!selectedCategory || movie.category === selectedCategory);
+    // Apply your filtering logic here based on the selectedCategory and selectedAgeLimit
+    // For "All" options, return all movies without filtering
+    if (selectedCategory === "All" && selectedAgeLimit === "All") {
+        return movies;
+    }
+
+    return movies.filter(movie => {
+        return (
+            (selectedCategory === "All" || movie.category === selectedCategory || selectedCategory === "") &&
+            (selectedAgeLimit === "All" || movie.ageLimit === selectedAgeLimit || selectedAgeLimit === "")
+        );
     });
-
-    return filteredMovies;
 }
 
+document.addEventListener("DOMContentLoaded", async function () {
+    await fetchMovieCategories();
+    await fetchAgeLimits();
 
-// Event listener for dropdown changes
-document.getElementById("ageLimit").addEventListener("change", function() {
-    const filteredMovies = filterMovies(movies);
-    displayMovies(filteredMovies);
-});
+    // Now that the dropdowns are populated, add event listeners for changes
+    document.getElementById("ageLimit").addEventListener("change", function () {
+        const filteredMovies = filterMovies(movies);
+        displayMovies(filteredMovies);
+    });
 
-document.getElementById("category").addEventListener("change", function() {
-    const filteredMovies = filterMovies(movies);
-    displayMovies(filteredMovies);
+    document.getElementById("category").addEventListener("change", function () {
+        const filteredMovies = filterMovies(movies);
+        displayMovies(filteredMovies);
+    });
 });
 
 // Fetch and display all movies when the page loads
@@ -132,7 +141,16 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-gotoEmployeeDashBoardButton.addEventListener("click", function(){
-    window.location.href='empoloyeeDashboard.html';
+document.addEventListener("DOMContentLoaded", function () {
+    const loginButton = document.getElementById("login-button");
+    const gotoEmployeeDashboardButton = document.getElementById("gotoEmployeeDashboard");
+
+    loginButton.onclick = () => {
+        window.location.href = "login.html";
+    };
+
+    gotoEmployeeDashboardButton.onclick = () => {
+        window.location.href = "empoloyeeDashboard.html"; // Corrected destination
+    };
 });
-a
+

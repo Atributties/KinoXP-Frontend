@@ -4,12 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8aba5531-4f90-408c-a6f0-85f8bb80f93b" name="Changes" comment="Fixed some refactor and added the dropdown to pick some off the enums in category and agelimits">
-      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+    <list default="true" id="8aba5531-4f90-408c-a6f0-85f8bb80f93b" name="Changes" comment="Now you can login to the system">
+      <change afterPath="$PROJECT_DIR$/js/moduleFetchEnums.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KinoXP-Frontend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/KinoXP-Frontend.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/empoloyeeDashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/empoloyeeDashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/movieDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/movieDetails.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/allMovies.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/allMovies.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/createMovie.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/createMovie.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/employeeDashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/employeeDashboard.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +24,7 @@
         <option value="package.json" />
         <option value="CSS File" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -46,7 +49,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "KN-33-add-a-employee-page-from-dashboard",
+    "git-widget-placeholder": "KN-46-add-login-interface-to-frontend",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -75,7 +78,21 @@
       <option name="project" value="LOCAL" />
       <updated>1696440989103</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added create user in the frontend so you can create a user.">
+      <created>1696511640262</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1696511640262</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Now you can login to the system">
+      <created>1696513642231</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1696513642231</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -94,6 +111,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Fixed some refactor and added the dropdown to pick some off the enums in category and agelimits" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed some refactor and added the dropdown to pick some off the enums in category and agelimits" />
+    <MESSAGE value="Added create user in the frontend so you can create a user." />
+    <MESSAGE value="Now you can login to the system" />
+    <option name="LAST_COMMIT_MESSAGE" value="Now you can login to the system" />
   </component>
 </project>

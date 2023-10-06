@@ -92,6 +92,8 @@ function displayMovies(movies) {
     });
 }
 
+
+
 let movies = [];
 async function fetchMovies() {
     movies = await fetchAnyUrl(url)
@@ -102,3 +104,20 @@ async function fetchMovies() {
 
 // Fetch and display all movies when the page loads
 document.addEventListener("DOMContentLoaded", fetchMovies);
+
+// employeeDashboard.js
+document.addEventListener("DOMContentLoaded", function () {
+    const createMovieButton = document.getElementById("createMovieButton");
+    const createShowtimeButton = document.getElementById("createShowtimeButton");
+
+    createMovieButton.onclick = () => {
+        window.location.href = "createMovie.html";
+    };
+
+    createShowtimeButton.onclick = () => {
+        window.location.href = "createShowtime.html";
+    };
+
+    // Add other functionality related to the employee dashboard if needed
+});
+
