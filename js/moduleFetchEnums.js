@@ -44,5 +44,28 @@ async function fetchAgeLimits() {
         console.error("Error fetching movie categories:", error);
     }
 }
+async function fetchRoles() {
 
-export {fetchMovieCategories, fetchAgeLimits}
+    const roleEnums = "http://localhost:8080/roles";
+    try {
+        const response = await fetchAnyUrl(roleEnums);
+        const roleSelect = document.getElementById("roles");
+
+        // Populate the dropdown with movie categories
+        response.forEach(roles => {
+            const option = document.createElement("option");
+            option.value = roles;
+            option.textContent = roles;
+            roleSelect.appendChild(option);
+        });
+        {
+            console.error("Error fetching roles:", response.status);
+        }
+    } catch
+        (error) {
+        console.error("Error fetching roles:", error);
+    }
+}
+
+
+export {fetchMovieCategories, fetchAgeLimits, fetchRoles}

@@ -4,25 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8aba5531-4f90-408c-a6f0-85f8bb80f93b" name="Changes" comment="added createElement and showMovies to module">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05-10-2023_11_15__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05-10-2023_11_15__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/createMovie.html" beforeDir="false" afterPath="$PROJECT_DIR$/createMovie.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/createShowtime.html" beforeDir="false" afterPath="$PROJECT_DIR$/createShowtime.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/empoloyeeDashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/empoloyeeDashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/createMovie.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/createMovie.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/createShowtime.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/createShowtime.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/employeeDashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/employeeDashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/module.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/movieDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/movieDetails.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/signup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/updateMovie.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/updateMovie.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movieDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/movieDetails.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/signup.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/updateMovie.html" beforeDir="false" afterPath="$PROJECT_DIR$/updateMovie.html" afterDir="false" />
-    </list>
+    <list default="true" id="8aba5531-4f90-408c-a6f0-85f8bb80f93b" name="Changes" comment="Created back buttons and implemented in all the pages." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -33,8 +15,8 @@
       <list>
         <option value="package.json" />
         <option value="CSS File" />
-        <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -59,7 +41,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "KN-49-Create-buttons-to-go-around-in-the-system",
+    "git-widget-placeholder": "KN-53-frontend-view-users-name-somewhere-welcome-user.name-",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -109,7 +91,14 @@
       <option name="project" value="LOCAL" />
       <updated>1696585791572</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Created back buttons and implemented in all the pages.">
+      <created>1696790565368</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1696790565368</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -131,6 +120,7 @@
     <MESSAGE value="Added create user in the frontend so you can create a user." />
     <MESSAGE value="Now you can login to the system" />
     <MESSAGE value="added createElement and showMovies to module" />
-    <option name="LAST_COMMIT_MESSAGE" value="added createElement and showMovies to module" />
+    <MESSAGE value="Created back buttons and implemented in all the pages." />
+    <option name="LAST_COMMIT_MESSAGE" value="Created back buttons and implemented in all the pages." />
   </component>
 </project>
