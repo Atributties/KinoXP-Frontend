@@ -107,3 +107,8 @@ function displayShowtimes(showtimes) {
 // Fetch and display movie details when the page loads
 document.addEventListener("DOMContentLoaded", fetchMovie);
 
+//Back button that go back to where you come from with history.back()
+document.getElementById('backButton').addEventListener('click', function() {
+    history.back();
+})
+
