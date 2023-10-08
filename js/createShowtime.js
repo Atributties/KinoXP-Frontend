@@ -58,5 +58,10 @@ document.addEventListener("DOMContentLoaded", fetchMovies);
 
 showtimeForm.addEventListener("submit", createShowtime);
 
+//Back button that go back to where you come from with history.back()
+document.getElementById('backButton').addEventListener('click', function() {
+    history.back();
+})
+
 
 

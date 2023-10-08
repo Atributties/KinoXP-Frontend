@@ -3,6 +3,10 @@ import {postObjectAsJson} from "./module.js";
 
 const url = "http://localhost:8080/user/login"
 const loginForm = document.getElementById("login-form")
+const lastUserEmail = localStorage.getItem('lastUserEmail');
+if (lastUserEmail) {
+    document.getElementById("email").value = lastUserEmail;
+}
 
 async function login(event) {
     event.preventDefault();
@@ -67,6 +71,11 @@ loginForm.addEventListener('submit', login);
 
 
 const sigupButton = document.getElementById("sign-up-button");
+
+//Back button that go back to where you come from with history.back()
+document.getElementById('backButton').addEventListener('click', function() {
+    history.back();
+})
 
 document.addEventListener("DOMContentLoaded", function () {
     sigupButton.onclick = () => {

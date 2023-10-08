@@ -109,3 +109,8 @@ updateMovieForm.addEventListener('submit', function(event) {
     updateMovie(id);
 });
 
+//Back button that go back to where you come from with history.back()
+document.getElementById('backButton').addEventListener('click', function() {
+    history.back();
+})
+
