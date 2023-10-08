@@ -5,8 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8aba5531-4f90-408c-a6f0-85f8bb80f93b" name="Changes" comment="added createElement and showMovies to module">
-      <change beforePath="$PROJECT_DIR$/js/allMovies.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/allMovies.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05-10-2023_11_15__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05-10-2023_11_15__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/createMovie.html" beforeDir="false" afterPath="$PROJECT_DIR$/createMovie.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/createShowtime.html" beforeDir="false" afterPath="$PROJECT_DIR$/createShowtime.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/empoloyeeDashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/empoloyeeDashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/createMovie.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/createMovie.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/createShowtime.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/createShowtime.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/employeeDashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/employeeDashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/module.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/module.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/movieDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/movieDetails.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/signup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/updateMovie.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/updateMovie.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movieDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/movieDetails.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/signup.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/updateMovie.html" beforeDir="false" afterPath="$PROJECT_DIR$/updateMovie.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +59,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "develop",
+    "git-widget-placeholder": "KN-49-Create-buttons-to-go-around-in-the-system",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",

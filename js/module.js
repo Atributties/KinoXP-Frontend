@@ -58,4 +58,6 @@ function showMovieDetails(movie) {
     return detailsDiv;
 }
 
+
+
 export {postObjectAsJson, fetchAnyUrl,restDelete, deleteObject, createElement, showMovieDetails}
