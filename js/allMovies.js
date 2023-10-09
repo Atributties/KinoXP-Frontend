@@ -7,7 +7,6 @@ const loginButton = document.getElementById("login-button");
 
 const url = "http://localhost:8080/movie";
 let movies = []
-
 // Function to fetch and display all movies
 async function fetchMovie() {
     try {
@@ -55,6 +54,7 @@ function createMovieImage(movie) {
     imageElement.src = movie.imageUrl || "https://media.comicbook.com/files/img/default-movie.png"; // Use a default image if imageUrl is not available
     imageElement.alt = movie.title; // Set alt text for accessibility
     imageElement.style.width = "100px"; // Set a fixed width for the image
+    imageElement.classList.add("mx-auto");
 
     return imageElement;
 }

@@ -4,32 +4,43 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Create Showtime</title>
-  <!-- Include any necessary CSS files -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-<h1>Create Showtime</h1>
+<body class="bg-gray-100">
 
-<!-- Create a form for creating showtimes -->
-<form id="showtimeForm">
-  <!-- Movie Dropdown -->
-  <label for="movieSelect">Select Movie:</label>
-  <select id="movieSelect" name="movie">
-    <!-- Options will be populated dynamically using JavaScript -->
-  </select>
+<div class="max-w-md mx-auto p-8 ounded-md">
+  <h1 class="text-2xl font-bold mb-6 text-center">Create Showtime</h1>
 
-  <!-- Date and Time Input -->
-  <label for="dateInput">Date:</label>
-  <input type="date" id="dateInput" name="date" required>
+  <!-- Create a form for creating showtimes -->
+  <form id="showtimeForm" class="mb-6">
+    <!-- Movie Dropdown -->
+    <label for="movieSelect" class="block text-sm font-medium text-gray-600 mb-2">Select Movie:</label>
+    <select id="movieSelect" name="movie" class="mt-1 p-2 border rounded-md w-full mb-4">
+      <!-- Options will be populated dynamically using JavaScript -->
+    </select>
 
-  <label for="timeInput">Time:</label>
-  <input type="time" id="timeInput" name="time" required>
+    <!-- Date and Time Input -->
+    <div class="mb-4">
+      <label for="dateInput" class="block text-sm font-medium text-gray-600 mb-2">Date:</label>
+      <input type="date" id="dateInput" name="date" class="mt-1 p-2 border rounded-md w-full" required>
+    </div>
 
-  <!-- Button to Create Showtime -->
-  <button type="submit">Create Showtime</button>
-  <button id="backButton">Back</button>
-</form>
+    <div class="mb-4">
+      <label for="timeInput" class="block text-sm font-medium text-gray-600 mb-2">Time:</label>
+      <input type="time" id="timeInput" name="time" class="mt-1 p-2 border rounded-md w-full" required>
+    </div>
+
+    <!-- Button to Create Showtime -->
+    <button type="submit" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">Create Showtime</button>
+
+    <!-- Back Button -->
+    <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center" id="backButton">Back</button>
+  </form>
+</div>
 
 <!-- Include any necessary JavaScript files -->
 <script type="module" src="js/createShowtime.js"></script>
+<script src="js/jsComponents/jsBasicHeaderFooter.js"></script>
 </body>
 </html>
+

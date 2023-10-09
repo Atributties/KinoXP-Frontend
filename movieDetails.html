@@ -3,13 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <title>Movie Details</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-gray-100 mb-10">
 
-<div id="movieDetails"></div>
-<div id="showtimeContainer"></div>
+<div class="max-w-2xl mx-auto p-8 object-center text-center">
+  <!-- Movie Details Container -->
+  <div id="movieDetails" class="mb-8">
+    <!-- Content from movieDetails.js will be injected here -->
+  </div>
 
-<button id="backButton">Back</button>
+  <!-- Showtime Container -->
+  <div id="showtimeContainer" class="mb-8">
+    <!-- Content for showtimes will be injected here -->
+  </div>
+
+  <!-- Back Button -->
+  <button id="backButton" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">Back</button>
+</div>
+
+<!-- Include your JavaScript files at the end -->
 <script type="module" src="js/movieDetails.js"></script>
+<script src="js/jsComponents/jsBasicHeaderFooter.js"></script>
+
 </body>
 </html>
+

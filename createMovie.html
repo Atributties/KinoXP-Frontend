@@ -1,37 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Create Movie</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-<h1>Create a New Movie</h1>
-<form id="movieForm">
-    <label for="title">Title:</label>
-    <input type="text" id="title" name="title" required><br><br>
+<body class="bg-gray-100">
 
-    <label for="imageUrl">Image URL(Optional):</label>
-    <input type="text" id="imageUrl" name="imageUrl"><br><br>
+<h1 class="text-2xl font-bold mb-6 text-center mt-4">Create a New Movie</h1>
 
-    <label for="category">Category:</label>
-    <select id="category" name="category" required>
+<form id="movieForm" class="max-w-md mx-auto">
+    <label for="title" class="block text-sm font-medium text-gray-600 mb-2">Title:</label>
+    <input type="text" id="title" name="title" class="mt-1 p-2 border rounded-md w-full" required>
+
+    <label for="imageUrl" class="block text-sm font-medium text-gray-600 mb-2">Image URL (Optional):</label>
+    <input type="text" id="imageUrl" name="imageUrl" class="mt-1 p-2 border rounded-md w-full">
+
+    <label for="category" class="block text-sm font-medium text-gray-600 mb-2">Category:</label>
+    <select id="category" name="category" class="mt-1 p-2 border rounded-md w-full" required>
         <!-- Options will be dynamically populated using JavaScript -->
-    </select><br><br>
+    </select>
 
-    <label for="ageLimit">Age Limit:</label>
-    <select id="ageLimit" name="ageLimit" required>
+    <label for="ageLimit" class="block text-sm font-medium text-gray-600 mb-2">Age Limit:</label>
+    <select id="ageLimit" name="ageLimit" class="mt-1 p-2 border rounded-md w-full" required>
         <!-- Options will be dynamically populated using JavaScript -->
-    </select><br><br>
+    </select>
 
-    <label for="duration">Duration (minutes):</label>
-    <input type="number" id="duration" name="duration" required><br><br>
+    <label for="duration" class="block text-sm font-medium text-gray-600 mb-2">Duration (minutes):</label>
+    <input type="number" id="duration" name="duration" class="mt-1 p-2 border rounded-md w-full" required>
 
-    <label for="description">Description:</label>
-    <textarea id="description" name="description" required></textarea><br><br>
+    <label for="description" class="block text-sm font-medium text-gray-600 mb-2">Description:</label>
+    <textarea id="description" name="description" class="mt-1 p-2 border rounded-md w-full" required></textarea>
 
-    <input type="submit" value="Create Movie">
-    <button id="backButton">Back</button>
+    <input type="submit" value="Create Movie" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-800 mt-4">
+    <button class="px-4 py-2 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold rounded-md inline-flex items-center focus:outline-none focus:shadow-outline-gray active:bg-gray-400 mt-4" id="backButton">Back</button>
 </form>
-</body>
-<!-- Include the JavaScript file for populating dropdowns -->
+
 <script type="module" src="js/createMovie.js"></script>
+<script src="js/jsComponents/jsBasicHeaderFooter.js"></script>
+</body>
 </html>
+
