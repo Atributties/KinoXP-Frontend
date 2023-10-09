@@ -11,11 +11,11 @@ if (lastUserEmail) {
 async function login(event) {
     event.preventDefault();
     try {
-        const user = {
+        const userCredentials = {
             email: document.getElementById("email").value,
             password: document.getElementById("password").value,
         };
-        const resp = await postObjectAsJson(url, user, "POST");
+        const resp = await postObjectAsJson(url, userCredentials, "POST");
 
         // ... (previous code)
 
@@ -24,7 +24,7 @@ async function login(event) {
 
             if (responseText.includes("Login successful")) {
                 // Fetch the user's role using the /user/role/{email} endpoint
-                const roleResp = await fetch(`http://localhost:8080/user/role/${user.email}`);
+                const roleResp = await fetch(`http://localhost:8080/user/role/${userCredentials.email}`);
                 if (roleResp.ok) {
                     const roleData = await roleResp.json();
                     console.log('Role data:', roleData);
