@@ -1,23 +1,23 @@
 // logout.js
-console.log("Logout script loaded"); // Add this line
+console.log("Logout script loaded");
+
 import { postObjectAsJson } from "./module.js";
 
-const logoutUrl = "http://localhost:8080/user/logout"; // Replace with your actual logout endpoint
+const logoutUrl = "http://localhost:8080/user/logout";
 
 async function logout() {
     try {
         const resp = await postObjectAsJson(logoutUrl, {}, "POST");
 
-        console.log("Logout Response:", resp); // Add this line to log the response
+        console.log("Logout Response:", resp);
 
         if (resp.ok) {
             const responseText = await resp.text();
 
-            console.log("Logout Response Text:", responseText); // Add this line to log the response text
+            console.log("Logout Response Text:", responseText);
 
             if (responseText.includes("Logout successful")) {
-                // Redirect to the login page after successful logout
-                window.location.href = "login.html"; // Replace with your login page
+                window.location.href = "login.html";
             } else {
                 alert('An error occurred during logout');
             }
@@ -29,13 +29,11 @@ async function logout() {
     }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-    const logoutButton = document.getElementById("logout-button");
+const logoutButton = document.getElementById("logout-button");
 
-    if (logoutButton) {
-        logoutButton.onclick = () => {
-            logout();
-        };
-    }
-});
+if (logoutButton) {
+    logoutButton.addEventListener('click', logout);
+}
+
+
 
