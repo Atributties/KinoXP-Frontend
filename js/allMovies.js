@@ -7,7 +7,6 @@ const loginButton = document.getElementById("login-button");
 
 const url = "http://localhost:8080/movie";
 let movies = []
-
 // Function to fetch and display all movies
 async function fetchMovie() {
     try {
