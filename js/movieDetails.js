@@ -31,11 +31,13 @@ function displayMovieDetails(movie) {
 
     // Create elements to display movie details
     const titleElement = document.createElement("h2");
+    titleElement.classList.add("text-4xl", "mb-4")
     titleElement.textContent = movie.title;
 
     const imageElement = document.createElement("img");
     imageElement.src = movie.imageUrl || "https://media.comicbook.com/files/img/default-movie.png";// Use default image if imageUrl is not available
-    imageElement.style.maxWidth = "100px"; // Set a fixed width for the image
+    imageElement.classList.add("mx-auto"); // Center the image
+    imageElement.style.maxWidth = "150px";
 
     const categoryElement = document.createElement("p");
     categoryElement.textContent = `Category: ${movie.category}`;
