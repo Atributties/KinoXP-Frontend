@@ -1,7 +1,7 @@
 import {postObjectAsJson} from "./module.js";
 
 
-const url = "http://localhost:8080/user/login"
+const url = "http://localhost:8080/session/login"
 const loginForm = document.getElementById("login-form")
 const lastUserEmail = localStorage.getItem('lastUserEmail');
 if (lastUserEmail) {
