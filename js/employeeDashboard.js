@@ -42,15 +42,13 @@ function displayMovies(movies) {
         anchorElement.appendChild(imageElement);
 
         // Create buttons for Update and Delete
-        const updateButton = document.createElement("button");
-        updateButton.textContent = "Update";
+        const updateButton = createElement("button","Update");
         updateButton.onclick = () => {
             const movieIdToUpdate = movie.id;
             window.location.href = `updateMovie.html?id=${movieIdToUpdate}`;
         };
 
-        const deleteButton = document.createElement("button");
-        deleteButton.textContent = "Delete";
+        const deleteButton = createElement("button","Delete");
         deleteButton.onclick = () => {
             const confirmMessage = `Are you sure you want to delete the movie "${movie.title}"?`;
             // Show a confirmation dialog
