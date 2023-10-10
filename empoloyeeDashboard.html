@@ -2,47 +2,56 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kino XP Employee Frontpage - All Movies</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css"> <!-- Add your custom styles if needed -->
 </head>
 <body class="bg-gray-100">
 
 <div class="p-8 flex ml-0 mr-0">
 
-
+    <!-- Category and Age Limit Dropdowns -->
     <div class="w-1/4 pr-4 ml-0">
         <label for="category" class="block text-gray-700 text-sm font-bold mb-2">Category:</label>
         <select id="category" class="border rounded-md p-2 w-full mb-4">
-            <option value="All">All</option>
-
+            <!-- Options will be dynamically populated using JavaScript -->
         </select>
 
         <label for="ageLimit" class="block text-gray-700 text-sm font-bold mb-2">Age Limit:</label>
         <select id="ageLimit" class="border rounded-md p-2 w-full">
-            <option value="All">All</option>
+            <!-- Options will be dynamically populated using JavaScript -->
         </select>
 
-        <button id="createMovieButton" class=" mt-4 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">Create Movie</button>
+        <button id="createMovieButton"
+                class="mt-4 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">Create Movie
+        </button>
 
-        <button id="createShowtimeButton" class="mt-4 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">Create Showtime</button>
-        <button class="mt-4 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center" id="backButton">Back</button>
+        <button id="createShowtimeButton"
+                class="mt-4 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">Create Showtime
+        </button>
+
+        <button class="mt-4 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center"
+                id="backButton">Back
+        </button>
     </div>
+
+    <!-- Movie List -->
     <div class="w-3/4 pl-4">
         <div class="mx-auto text-center">
             <ul id="movieList" class="list-none p-0">
+                <!-- Add your movie list items here -->
             </ul>
         </div>
     </div>
 
 </div>
 
-
 <script type="module" src="js/employeeDashboard.js"></script>
 <script type="module" src="js/jsComponents/jsUserHeaderAndFooter.js"></script>
-<script type="module" src="js/allMovies.js"></script>
+
 </body>
 </html>
+
 
 
 

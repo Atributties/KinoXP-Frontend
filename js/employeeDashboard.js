@@ -1,4 +1,4 @@
-import {fetchAnyUrl, deleteObject, createElement, showMovieDetails} from "./module.js";
+import {fetchAnyUrl, deleteObject} from "./module.js";
 
 console.log("I am in All Movies!!");
 
@@ -37,18 +37,44 @@ function displayMovies(movies) {
         imageElement.src = movie.imageUrl || "https://media.comicbook.com/files/img/default-movie.png"; // Use default image if imageUrl is not available
         imageElement.alt = movie.title;
         imageElement.style.width = "100px";
+        imageElement.classList.add("mx-auto"); // Center the image
 
         // Append the image to the anchor
         anchorElement.appendChild(imageElement);
 
+        // Create a div for movie details
+        const detailsDiv = document.createElement("div");
+
+        // Append title to detailsDiv
+        const titleElement = document.createElement("p");
+        titleElement.textContent = movie.title;
+        detailsDiv.appendChild(titleElement);
+
+        // Append category, age limit, and duration under the title
+        const categoryElement = document.createElement("p");
+        categoryElement.textContent = `Category: ${movie.category}`;
+        detailsDiv.appendChild(categoryElement);
+
+        const ageLimitElement = document.createElement("p");
+        ageLimitElement.textContent = `Age Limit: ${movie.ageLimit}`;
+        detailsDiv.appendChild(ageLimitElement);
+
+        const durationElement = document.createElement("p");
+        durationElement.textContent = `Duration: ${movie.duration} minutes`;
+        detailsDiv.appendChild(durationElement);
+
         // Create buttons for Update and Delete
-        const updateButton = createElement("button","Update");
+        const updateButton = document.createElement("button");
+        updateButton.textContent = "Update";
+        updateButton.className = "mr-2 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center";
         updateButton.onclick = () => {
             const movieIdToUpdate = movie.id;
             window.location.href = `updateMovie.html?id=${movieIdToUpdate}`;
         };
 
-        const deleteButton = createElement("button","Delete");
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete";
+        deleteButton.className = "bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center";
         deleteButton.onclick = () => {
             const confirmMessage = `Are you sure you want to delete the movie "${movie.title}"?`;
             // Show a confirmation dialog
@@ -56,11 +82,13 @@ function displayMovies(movies) {
             // If the user confirms, proceed with deletion
             if (userConfirmed) {
                 deleteObject(movie, url);
-                listItem.remove()
+                listItem.remove();
             }
         };
 
-        anchorElement.appendChild(showMovieDetails(movie));
+
+
+        anchorElement.appendChild(detailsDiv);
         listItem.appendChild(anchorElement);
         listItem.appendChild(updateButton);
         listItem.appendChild(deleteButton);
