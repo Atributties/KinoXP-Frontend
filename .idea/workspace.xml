@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8aba5531-4f90-408c-a6f0-85f8bb80f93b" name="Changes" comment="Created back buttons and implemented in all the pages." />
+    <list default="true" id="8aba5531-4f90-408c-a6f0-85f8bb80f93b" name="Changes" comment="clean up inj employeeDashboard.js">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/costumerPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/costumerPage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/empoloyeeDashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/empoloyeeDashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/employeeDashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/employeeDashboard.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,7 +46,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "adding__edit__and__delete__to__movies",
+    "git-widget-placeholder": "frontend__fixes",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -98,7 +103,14 @@
       <option name="project" value="LOCAL" />
       <updated>1696790565368</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="clean up inj employeeDashboard.js">
+      <created>1697015551249</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1697015551249</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -121,6 +133,7 @@
     <MESSAGE value="Now you can login to the system" />
     <MESSAGE value="added createElement and showMovies to module" />
     <MESSAGE value="Created back buttons and implemented in all the pages." />
-    <option name="LAST_COMMIT_MESSAGE" value="Created back buttons and implemented in all the pages." />
+    <MESSAGE value="clean up inj employeeDashboard.js" />
+    <option name="LAST_COMMIT_MESSAGE" value="clean up inj employeeDashboard.js" />
   </component>
 </project>
