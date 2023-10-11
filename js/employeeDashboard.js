@@ -1,4 +1,4 @@
-import {fetchAnyUrl, deleteObject} from "./module.js";
+import {fetchAnyUrl, deleteObject, createElement} from "./module.js";
 
 console.log("I am in All Movies!!");
 
@@ -46,34 +46,28 @@ function displayMovies(movies) {
         const detailsDiv = document.createElement("div");
 
         // Append title to detailsDiv
-        const titleElement = document.createElement("p");
-        titleElement.textContent = movie.title;
+        const titleElement = createElement("p", movie.title);
         detailsDiv.appendChild(titleElement);
 
         // Append category, age limit, and duration under the title
-        const categoryElement = document.createElement("p");
-        categoryElement.textContent = `Category: ${movie.category}`;
+        const categoryElement = createElement("p",`Category: ${movie.category}`);
         detailsDiv.appendChild(categoryElement);
 
-        const ageLimitElement = document.createElement("p");
-        ageLimitElement.textContent = `Age Limit: ${movie.ageLimit}`;
+        const ageLimitElement = document.createElement("p",`Age Limit: ${movie.ageLimit}`);
         detailsDiv.appendChild(ageLimitElement);
 
-        const durationElement = document.createElement("p");
-        durationElement.textContent = `Duration: ${movie.duration} minutes`;
+        const durationElement = document.createElement("p",`Duration: ${movie.duration} minutes`);
         detailsDiv.appendChild(durationElement);
 
         // Create buttons for Update and Delete
-        const updateButton = document.createElement("button");
-        updateButton.textContent = "Update";
+        const updateButton = createElement("button","Update");
         updateButton.className = "mr-2 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center";
         updateButton.onclick = () => {
             const movieIdToUpdate = movie.id;
             window.location.href = `updateMovie.html?id=${movieIdToUpdate}`;
         };
 
-        const deleteButton = document.createElement("button");
-        deleteButton.textContent = "Delete";
+        const deleteButton = createElement("button","Delete");
         deleteButton.className = "bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center";
         deleteButton.onclick = () => {
             const confirmMessage = `Are you sure you want to delete the movie "${movie.title}"?`;
