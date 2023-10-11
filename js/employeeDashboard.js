@@ -1,133 +1,172 @@
-import {fetchAnyUrl, deleteObject} from "./module.js";
+import { fetchAnyUrl, deleteObject, createElement, showMovieDetails } from "./module.js";
+import { fetchAgeLimits, fetchMovieCategories } from "./moduleFetchEnums.js";
 
 console.log("I am in All Movies!!");
+const gotoEmployeeDashBoardButton = document.getElementById("gotoEmployeeDashboard");
+const loginButton = document.getElementById("login-button");
 
 const url = "http://localhost:8080/movie";
+let movies = [];
 
-// Function to display movies in the HTML
+// Function to fetch and display all movies
+async function fetchMovies() {
+    try {
+        movies = await fetchAnyUrl(url);
+        displayMovies(movies);
+    } catch (error) {
+        console.error("Error fetching movie:", error);
+    }
+}
+
+// Function to create a movie list item
+function createMovieList(movie) {
+    const listItem = document.createElement("li");
+    listItem.style.display = "inline-block";
+    listItem.style.marginRight = "10px";
+
+    // Create an anchor element for each movie
+    const anchorElement = createMovieLink(movie);
+
+    // Create a div for movie details
+    const detailsDiv = showMovieDetails(movie);
+
+    // Append detailsDiv to the anchor
+    anchorElement.appendChild(detailsDiv);
+
+    // Append the anchor to the list item
+    listItem.appendChild(anchorElement);
+
+    // Add buttons for Update and Delete
+    const updateButton = createUpdateButton(movie);
+    const deleteButton = createDeleteButton(movie);
+
+    listItem.appendChild(updateButton);
+    listItem.appendChild(deleteButton);
+
+    return listItem;
+}
+
+// Function to create a link for each movie
+function createMovieLink(movie) {
+    const anchorElement = document.createElement("a");
+    anchorElement.href = `movieDetails.html?id=${movie.id}`;
+    anchorElement.style.textDecoration = "none";
+    anchorElement.appendChild(createMovieImage(movie));
+
+    return anchorElement;
+}
+
+// Function to create an image for each movie
+function createMovieImage(movie) {
+    const imageElement = document.createElement("img");
+    imageElement.src = movie.imageUrl || "https://media.comicbook.com/files/img/default-movie.png";
+    imageElement.alt = movie.title;
+    imageElement.style.width = "100px";
+    imageElement.classList.add("mx-auto");
+
+    return imageElement;
+}
+
+// Function to create an "Update" button for a movie
+function createUpdateButton(movie) {
+    const updateButton = createElement("button", "Update");
+    updateButton.className = "mr-2 bg-gray-300 hover-bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center";
+    updateButton.onclick = () => {
+        const movieIdToUpdate = movie.id;
+        window.location.href = `updateMovie.html?id=${movieIdToUpdate}`;
+    };
+
+    return updateButton;
+}
+
+// Function to create a "Delete" button for a movie
+function createDeleteButton(movie) {
+    const deleteButton = createElement("button", "Delete");
+    deleteButton.className = "bg-gray-300 hover-bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center";
+    deleteButton.onclick = () => {
+        const confirmMessage = `Are you sure you want to delete the movie "${movie.title}"?`;
+        const userConfirmed = window.confirm(confirmMessage);
+        if (userConfirmed) {
+            deleteObject(movie, url);
+            // Optionally, you can remove the item from the list
+            listItem.remove();
+        }
+    };
+
+    return deleteButton;
+}
+
+// Update displayMovies to use the new functions
 function displayMovies(movies) {
     const movieList = document.getElementById("movieList");
-
-    // Clear previous movie list
     movieList.innerHTML = "";
 
-    // Get selected values from dropdowns
-    const selectedAgeLimit = document.getElementById("ageLimit").value;
-    const selectedCategory = document.getElementById("category").value;
-
-    // Filter movies based on selected values
-    const filteredMovies = movies.filter(movie => {
-        return (!selectedAgeLimit || movie.ageLimit === selectedAgeLimit) &&
-            (!selectedCategory || movie.category === selectedCategory);
-    });
-
-    // Loop through each filtered movie and create list items
-    filteredMovies.forEach((movie) => {
-        // Create an anchor element for each movie
-        const anchorElement = document.createElement("a");
-        anchorElement.href = `movieDetails.html?id=${movie.id}`; // Set the URL to navigate to details page
-        anchorElement.style.textDecoration = "none"; // Remove underline for better appearance
-
-        const listItem = document.createElement("li");
-        listItem.style.display = "inline-block"; // Set display to inline-block for side-by-side layout
-        listItem.style.marginRight = "10px"; // Add some margin between each movie
-
-        // Create an image element and set its source to the movie's imageUrl
-        const imageElement = document.createElement("img");
-        imageElement.src = movie.imageUrl || "https://media.comicbook.com/files/img/default-movie.png"; // Use default image if imageUrl is not available
-        imageElement.alt = movie.title;
-        imageElement.style.width = "100px";
-        imageElement.classList.add("mx-auto"); // Center the image
-
-        // Append the image to the anchor
-        anchorElement.appendChild(imageElement);
-
-        // Create a div for movie details
-        const detailsDiv = document.createElement("div");
-
-        // Append title to detailsDiv
-        const titleElement = document.createElement("p");
-        titleElement.textContent = movie.title;
-        detailsDiv.appendChild(titleElement);
-
-        // Append category, age limit, and duration under the title
-        const categoryElement = document.createElement("p");
-        categoryElement.textContent = `Category: ${movie.category}`;
-        detailsDiv.appendChild(categoryElement);
-
-        const ageLimitElement = document.createElement("p");
-        ageLimitElement.textContent = `Age Limit: ${movie.ageLimit}`;
-        detailsDiv.appendChild(ageLimitElement);
-
-        const durationElement = document.createElement("p");
-        durationElement.textContent = `Duration: ${movie.duration} minutes`;
-        detailsDiv.appendChild(durationElement);
-
-        // Create buttons for Update and Delete
-        const updateButton = document.createElement("button");
-        updateButton.textContent = "Update";
-        updateButton.className = "mr-2 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center";
-        updateButton.onclick = () => {
-            const movieIdToUpdate = movie.id;
-            window.location.href = `updateMovie.html?id=${movieIdToUpdate}`;
-        };
-
-        const deleteButton = document.createElement("button");
-        deleteButton.textContent = "Delete";
-        deleteButton.className = "bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center";
-        deleteButton.onclick = () => {
-            const confirmMessage = `Are you sure you want to delete the movie "${movie.title}"?`;
-            // Show a confirmation dialog
-            const userConfirmed = window.confirm(confirmMessage);
-            // If the user confirms, proceed with deletion
-            if (userConfirmed) {
-                deleteObject(movie, url);
-                listItem.remove();
-            }
-        };
-
-
-
-        anchorElement.appendChild(detailsDiv);
-        listItem.appendChild(anchorElement);
-        listItem.appendChild(updateButton);
-        listItem.appendChild(deleteButton);
+    movies.forEach((movie) => {
+        const listItem = createMovieList(movie);
         movieList.appendChild(listItem);
     });
 }
 
+// Function to filter movies based on selected values
+function filterMovies(movies) {
+    const selectedCategory = document.getElementById("category").value;
+    const selectedAgeLimit = document.getElementById("ageLimit").value;
 
+    if (selectedCategory === "All" && selectedAgeLimit === "All") {
+        return movies;
+    }
 
-let movies = [];
-async function fetchMovies() {
-    movies = await fetchAnyUrl(url)
-    displayMovies(movies)
-
+    return movies.filter((movie) => {
+        return (
+            (selectedCategory === "All" || movie.category === selectedCategory || selectedCategory === "") &&
+            (selectedAgeLimit === "All" || movie.ageLimit === selectedAgeLimit || selectedAgeLimit === "")
+        );
+    });
 }
 
+document.addEventListener("DOMContentLoaded", async function () {
+    await fetchMovieCategories();
+    await fetchAgeLimits();
 
-// Fetch and display all movies when the page loads
-document.addEventListener("DOMContentLoaded", fetchMovies);
+    document.getElementById("ageLimit").addEventListener("change", function () {
+        const filteredMovies = filterMovies(movies);
+        displayMovies(filteredMovies);
+    });
 
-// employeeDashboard.js
-document.addEventListener("DOMContentLoaded", function () {
-    const createMovieButton = document.getElementById("createMovieButton");
-    const createShowtimeButton = document.getElementById("createShowtimeButton");
-
-    createMovieButton.onclick = () => {
-        window.location.href = "createMovie.html";
-    };
-
-    createShowtimeButton.onclick = () => {
-        window.location.href = "createShowtime.html";
-    };
-
-    // Add other functionality related to the employee dashboard if needed
+    document.getElementById("category").addEventListener("change", function () {
+        const filteredMovies = filterMovies(movies);
+        displayMovies(filteredMovies);
+    });
 });
 
-//Back button that go back to where you come from with history.back()
-document.getElementById('backButton').addEventListener('click', function() {
-    history.back();
-})
+// Fetch and display all movies when the page loads
+document.addEventListener("DOMContentLoaded", function () {
+    const filteredMovies = filterMovies(movies);
+    displayMovies(filteredMovies);
+    fetchMovies().then(() => {
+        console.log("fetchMovies has completed.");
+    });
+});
 
+document.addEventListener("DOMContentLoaded", function () {
+    const loginButton = document.getElementById("login-button");
+    const gotoEmployeeDashboardButton = document.getElementById("gotoEmployeeDashboard");
+
+    loginButton.onclick = () => {
+        window.location.href = "login.html";
+    };
+
+    gotoEmployeeDashboardButton.onclick = () => {
+        window.location.href = "employeeDashboard.html"; // Corrected destination
+    };
+});
+
+// Functionality for the "Create Movie" and "Create Showtime" buttons
+document.getElementById("createMovieButton").addEventListener("click", function () {
+    window.location.href = "createMovie.html";
+});
+
+document.getElementById("createShowtimeButton").addEventListener("click", function () {
+    window.location.href = "createShowtime.html";
+});
 
