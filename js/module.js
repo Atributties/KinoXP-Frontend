@@ -36,9 +36,27 @@ async function deleteObject(object, url) {
 }
 
 
-function fetchAnyUrl(url) {
-    return fetch(url).then(response => response.json())
+async function fetchAnyUrl(url) {
+    try {
+        const response = await fetch(url, {
+            headers: {
+                'Accept': 'application/json',
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        return response.json();
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        throw error;
+    }
 }
+
+
+
 function createElement(elementType, textContent) {
     const element = document.createElement(elementType);
     element.textContent = textContent;

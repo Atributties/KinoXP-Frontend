@@ -1,84 +1,70 @@
-import {postObjectAsJson} from "./module.js";
+const loginForm = document.getElementById('login-form');
 
+loginForm.addEventListener('submit', async (event) => {
+    event.preventDefault(); // Prevent the form from submitting in the traditional way
 
-const url = "http://localhost:8080/user/login"
-const loginForm = document.getElementById("login-form")
-const lastUserEmail = localStorage.getItem('lastUserEmail');
-if (lastUserEmail) {
-    document.getElementById("email").value = lastUserEmail;
-}
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
 
-async function login(event) {
-    event.preventDefault();
-    try {
-        const userCredentials = {
-            email: document.getElementById("email").value,
-            password: document.getElementById("password").value,
-        };
-        const resp = await postObjectAsJson(url, userCredentials, "POST");
-
-        // ... (previous code)
-
-        if (resp.ok) {
-            const responseText = await resp.text();
-
-            if (responseText.includes("Login successful")) {
-                // Fetch the user's role using the /user/role/{email} endpoint
-                const roleResp = await fetch(`http://localhost:8080/user/role/${userCredentials.email}`);
-                if (roleResp.ok) {
-                    const roleData = await roleResp.json();
-                    console.log('Role data:', roleData);
-                    const userRole = roleData || "CUSTOMER";
-
-                    // Redirect based on the user role
-                    if (userRole === "CUSTOMER") {
-                        window.location.href = "costumerPage.html";
-                    } else if (userRole === "ADMIN" || userRole === "Employee") {
-                        window.location.href = "employeePage.html";
-                    } else {
-                        alert('Unknown role. Unable to redirect.');
-                    }
-                } else {
-                    // Handle error when fetching user role
-                    console.error('Error fetching user role:', roleResp.statusText);
-                    alert('Error fetching user role');
-                }
-            } else {
-                alert('An error occurred');
-            }
-
-        } else if (resp.status === 400) {
-            alert('Invalid username or password');
-        } else if (resp.status === 404) {
-            alert('User not found');
-        } else {
-            alert('An error occurred');
-        }
-
-        loginForm.reset(); // Reset the form
-    } catch (error) {
-        console.error('Error:', error);
-    }
-}
-
-loginForm.addEventListener('submit', login);
-
-
-
-
-
-
-
-
-const sigupButton = document.getElementById("sign-up-button");
-
-//Back button that go back to where you come from with history.back()
-document.getElementById('backButton').addEventListener('click', function() {
-    history.back();
-})
-
-document.addEventListener("DOMContentLoaded", function () {
-    sigupButton.onclick = () => {
-        window.location.href = "signup.html";
+    const user = {
+        email: emailInput.value,
+        password: passwordInput.value,
     };
+
+    try {
+        // Make a POST request to your backend login endpoint
+        const response = await fetch('http://localhost:8080/session/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(user),
+        });
+
+        if (response.ok) {
+            // If login is successful, user details are included in the response
+            const userDetails = await response.json();
+
+            console.log('User details:', userDetails);
+
+            // Redirect based on user role
+            if (userDetails.role === 'ADMIN' || userDetails.role === 'EMPLOYEE') {
+                window.location.href = 'employeePage.html';
+            } else if (userDetails.role === 'CUSTOMER') {
+                window.location.href = 'costumerPage.html';
+            } else {
+                console.error('Invalid user role');
+                // Handle invalid user role
+            }
+        } else {
+            console.error('Login failed:', await response.text());
+            // Handle login failure
+        }
+    } catch (error) {
+        console.error('Error:', error.message);
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const signUpButton = document.getElementById('sign-up-button');
+
+signUpButton.addEventListener('click', () => {
+    window.location.href = 'signup.html';
+});
+
+// Back button that goes back to the previous page
+document.getElementById('backButton').addEventListener('click', () => {
+    history.back();
 });
