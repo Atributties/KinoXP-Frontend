@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
     async function logout(event) {
         event.preventDefault(); // Prevent the default navigation behavior
         console.log("Logout button clicked"); // Add this line
+        localStorage.removeItem('userDetails');
         try {
             const resp = await postObjectAsJson(logoutUrl, {}, "POST");
 

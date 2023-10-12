@@ -26,6 +26,7 @@ loginForm.addEventListener('submit', async (event) => {
             const userDetails = await response.json();
 
             console.log('User details:', userDetails);
+            localStorage.setItem('userDetails', JSON.stringify(userDetails));
 
             // Redirect based on user role
             if (userDetails.role === 'ADMIN' || userDetails.role === 'EMPLOYEE') {

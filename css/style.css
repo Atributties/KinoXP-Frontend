@@ -39,3 +39,11 @@
 #backButton, #CreateReservationButton {
     margin: 10px;
 }
+
+.seat-cell {
+    width: 50px; /* Set the desired width */
+    height: 50px; /* Set the desired height */
+    display: inline-block; /* Display cells inline */
+    margin: 5px; /* Add some spacing between cells */
+    border: 1px solid #000; /* Add a border for separation */
+}
