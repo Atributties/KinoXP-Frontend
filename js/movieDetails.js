@@ -5,7 +5,7 @@ console.log("I am in Movie Details!!");
 const urlParams = new URLSearchParams(window.location.search);
 const movieId = urlParams.get('id');
 const movieUrl = "http://localhost:8080/movie"
-const showtimeUrl = "http://localhost:8080/showtime/movie"
+const showtimeUrl = "http://localhost:8080/showtimes"
 let movie;
 let showtimes = []
 
@@ -63,9 +63,8 @@ function displayMovieDetails(movie) {
 // Function to fetch and display showtimes for a specific movie
 // Function to fetch and display showtimes for a specific movie
 async function fetchShowtimes() {
-    const getShowtimesUrl = showtimeUrl + "/" + movieId;
     try {
-        showtimes = await fetchAnyUrl(getShowtimesUrl); // Await the Promise
+        showtimes = await fetchAnyUrl(showtimeUrl); // Await the Promise
 
         // Log the showtimes to the console
         console.log("Fetched Showtimes:", showtimes);
@@ -77,33 +76,49 @@ async function fetchShowtimes() {
 }
 
 
-// Function to display showtimes in the HTML
+
 function displayShowtimes(showtimes) {
     const showtimeContainer = document.getElementById("showtimeContainer");
 
-    // Clear previous showtime content
-    showtimeContainer.innerHTML = "";
+    // Filtrer showtimes baseret på det matchende movieid
+    const matchingShowtimes = showtimes.filter(showtime => showtime.movie.id === parseInt(movieId));
 
-    // Create elements to display showtimes
-    const showtimesTitle = document.createElement("h3");
-    showtimesTitle.textContent = "Showtimes";
+    // Tjek om der er nogen matchende showtimes
+    if (matchingShowtimes.length === 0) {
+        showtimeContainer.innerHTML = "Ingen showtimes fundet for denne film.";
+        return;
+    }
 
-    // Append title to the showtimeContainer
-    showtimeContainer.appendChild(showtimesTitle);
-
-    // Create a list to display showtimes
-    const showtimesList = document.createElement("ul");
-
-    // Iterate through showtimes and create list items
-    showtimes.forEach((showtime) => {
+    // Opret HTML-elementer for hver matchende showtime
+    const showtimeList = document.createElement("ul");
+    matchingShowtimes.forEach(showtime => {
         const showtimeItem = document.createElement("li");
-        showtimeItem.textContent = `${showtime.date} - ${showtime.time}`;
-        showtimesList.appendChild(showtimeItem);
+        const showtimeDateTime = new Date(`${showtime.date} ${showtime.time}`);
+        const formattedDateTime = showtimeDateTime.toLocaleString(); // Brug denne funktion til at formatere datoen og tiden
+
+        // Opret en ankellink og tilføj et data-attribut til det for at gemme showtime ID
+        const showtimeLink = document.createElement("a");
+        showtimeLink.href = "#"; // Her kan du tilføje den ønskede linkdestination
+        showtimeLink.dataset.showtimeId = showtime.id; // Gem showtime ID som et data-attribut
+
+        // Lyt efter klik på ankellinket og send showtime ID
+        showtimeLink.addEventListener("click", function (event) {
+            event.preventDefault(); // Prevent the default link behavior
+            const showtimeId = showtime.id; // Get the showtime ID
+            console.log("Moviedetaisl" + showtimeId)
+            window.location.href = `showShowtime.html?showtimeId=${showtimeId}`; // Include showtimeId in the URL
+        });
+        showtimeLink.textContent = `Date And Time: ${formattedDateTime}`;
+        showtimeItem.appendChild(showtimeLink);
+        showtimeList.appendChild(showtimeItem);
     });
 
-    // Append the list to the showtimeContainer
-    showtimeContainer.appendChild(showtimesList);
+    // Tilsæt showtimeList til showtimeContainer
+    showtimeContainer.innerHTML = "";
+    showtimeContainer.appendChild(showtimeList);
 }
+
+
 
 
 // Fetch and display movie details when the page loads

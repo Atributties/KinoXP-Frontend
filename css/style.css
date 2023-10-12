@@ -1,0 +1,41 @@
+/* Container for the entire movie details display */
+#showtimeContainer {
+    display: flex;
+    align-items: flex-start; /* Align content to the top */
+    justify-content: flex-start; /* Align content to the left */
+}
+
+/* Left container for the movie image */
+.left-container {
+    width: 40%; /* Adjust the width of the left container as needed */
+    padding: 20px;
+    float: left; /* Float the left container to the left */
+}
+
+.left-container img {
+    max-width: 100%; /* Adjust the size of the image as needed */
+    height: auto;
+    border: 2px solid #333;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Right container for movie and showtime details */
+.right-container {
+    width: 60%; /* Adjust the width of the right container as needed */
+    padding: 20px;
+}
+
+.right-container h1, .right-container h2 {
+    font-size: 24px;
+    margin-top: 0;
+}
+
+.right-container p {
+    margin: 0.5rem 0;
+    font-size: 16px;
+}
+
+/* Back and Create Reservation Buttons */
+#backButton, #CreateReservationButton {
+    margin: 10px;
+}
