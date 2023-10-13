@@ -1,27 +1,26 @@
 // createReservation.js
 
-import {fetchAnyUrl, postObjectAsJson} from "./module.js";
+import { fetchAnyUrl, postObjectAsJson } from "./module.js";
 
 const seatsContainer = document.getElementById("seatsContainer");
 const confirmReservationButton = document.getElementById("confirmReservationButton");
 const backToShowtimeButton = document.getElementById("backToShowtimeButton");
 
+const postReservationUrl = "http://localhost:8080/reservation";
 
-
-
-let showtimeId
-let showtime
+const userDetails = JSON.parse(localStorage.getItem('userDetails'));
+const urlParams = new URLSearchParams(window.location.search);
+let showtimeId = urlParams.get("showtimeId");
+let showtime;
+const selectedSeats = [];
 
 async function fetchShowtime() {
-
-    console.log(showtimeId)
     try {
         if (showtimeId) { // Check if showtimeId is valid
-            let showtimeUrl = "http://localhost:8080/showtime/" + showtimeId
+            let showtimeUrl = "http://localhost:8080/showtime/" + showtimeId;
             showtime = await fetchAnyUrl(showtimeUrl);
-            // Call a function to display the showtime and movie details on the page
             displayShowtimeAndMovie(showtime);
-            displaySeats(showtime)
+            displaySeats(showtime);
         } else {
             console.error("Invalid showtimeId");
         }
@@ -29,106 +28,120 @@ async function fetchShowtime() {
         console.error("Error fetching showtime:", error);
     }
 }
-function displayShowtimeAndMovie(showtime) {
-    // Assuming you have elements with specific IDs in your HTML for displaying the data
-    const movieDetailsContainer = document.getElementById("movieDetailsContainer");
 
+function displayShowtimeAndMovie(showtime) {
+    const movieDetailsContainer = document.getElementById("movieDetailsContainer");
     if (movieDetailsContainer) {
-        // Clear existing content
         movieDetailsContainer.innerHTML = "";
 
-        // Create an image element for the movie
         const image = document.createElement("img");
         image.src = showtime.movie.imageUrl;
         image.alt = showtime.movie.title;
         movieDetailsContainer.appendChild(image);
 
-        // Create a text element for the movie name
         const movieName = document.createElement("h2");
         movieName.textContent = showtime.movie.title;
         movieDetailsContainer.appendChild(movieName);
     }
 }
 
-
-
 function displaySeats(showtime) {
     const seatsTable = document.createElement("table");
-    seatsTable.classList.add("seats-table"); // Add a CSS class for styling
+    seatsTable.classList.add("seats-table");
 
-    // Create a CSS class for the table cells
-    const cellClass = "seat-cell"; // Define a class for table cells
-
-    // Calculate the number of columns (e.g., 10 columns)
+    const cellClass = "seat-cell";
     const numColumns = 15;
 
-    // Loop through the seats in the showtime and create table rows for each seat
     let rowIndex = 0;
     let currentRow = null;
 
     showtime.seatDTOS.forEach((seat, index) => {
         if (index % numColumns === 0) {
-            // Create a new row for the next set of columns
             currentRow = seatsTable.insertRow(rowIndex++);
         }
 
-        // Create a cell for the seat image
         const seatImageCell = currentRow.insertCell(index % numColumns);
-        seatImageCell.classList.add(cellClass); // Apply the cell class
+        seatImageCell.classList.add(cellClass);
 
         const seatImage = document.createElement("img");
-        seatImage.src = "img/pngegg.png"; // Update with the correct image URL
+        seatImage.src = "img/pngegg.png";
         seatImage.alt = `Seat ${seat.id}`;
         seatImageCell.appendChild(seatImage);
 
-        // Add a click event listener to toggle the seat color and status
         seatImageCell.addEventListener("click", () => {
             if (seat.status === "AVAILABLE") {
                 seatImageCell.style.backgroundColor = "orange";
-                seat.status = "RESERVED"; // Update the seat status
+                seat.status = "RESERVED";
+                selectedSeats.push(seat);
             } else if (seat.status === "RESERVED") {
                 seatImageCell.style.backgroundColor = "green";
-                seat.status = "AVAILABLE"; // Update the seat status
+                seat.status = "AVAILABLE";
+                const index = selectedSeats.findIndex(selectedSeat => selectedSeat.id === seat.id);
+                if (index !== -1) {
+                    selectedSeats.splice(index, 1);
+                }
             }
+            console.log(selectedSeats);
         });
 
-        // Set initial seat color based on the seat status
         if (seat.status === "AVAILABLE") {
             seatImageCell.style.backgroundColor = "green";
         } else {
-            seatImageCell.style.backgroundColor = "orange";
+            seatImageCell.style.backgroundColor = "red";
         }
     });
 
-    // Append the table to the seatsContainer
     const seatsContainer = document.getElementById("seatsContainer");
-    seatsContainer.innerHTML = ""; // Clear existing content
+    seatsContainer.innerHTML = "";
     seatsContainer.appendChild(seatsTable);
 }
 
+async function createReservation() {
+    if (userDetails) {
+        const reservationData = {
+            user: userDetails.id,
+            showtime: showtime.id,
+            seatReservations: selectedSeats,
+        };
 
+        try {
+            const response = await postReservation(reservationData);
 
+            if (response.status === 201) {
+                // Reservation was created successfully; redirect to the index page
+                window.location.href = "index.html"; // Update the URL as needed
+            } else {
+                console.error("Error creating reservation:", response.statusText);
+            }
+        } catch (error) {
+            console.error("Error creating reservation:", error);
+        }
+    } else {
+        console.error("User is not logged in. Please log in to create a reservation.");
+    }
+}
 
+async function postReservation(reservation) {
+    debugger
+    try {
+        const resp = await postObjectAsJson(postReservationUrl, reservation, "POST");
+        return resp;
+    } catch (error) {
+        console.error("Error creating reservation:", error);
+        throw error;
+    }
+}
 
-confirmReservationButton.addEventListener("click", () => {
-    // Implement the logic for confirming the reservation
-    // You can use data from the selected seats to proceed with the reservation
-});
+confirmReservationButton.addEventListener("click", createReservation);
 
 backToShowtimeButton.addEventListener("click", () => {
-    // Navigate back to the showtime page
     window.location.href = `showtime.html?showtimeId=${showtimeId}`;
 });
 
-// Fetch and display showtime and seats when the page loads
 document.addEventListener("DOMContentLoaded", () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    showtimeId = urlParams.get("showtimeId");
     fetchShowtime();
 });
 
-
-
-
-
-
+document.addEventListener("DOMContentLoaded", () => {
+    console.log(selectedSeats);
+});
