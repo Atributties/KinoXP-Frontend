@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+<div class="max-w-md p-8 rounded-md mx-auto text-center">
+  <h1 class="text-2xl font-bold mb-6">Login</h1>
+
+  <form id="login-form" class="mb-6">
+    <div class="mb-4">
+      <label for="email" class="block text-sm font-medium text-gray-600">Mail:</label>
+      <input type="text" id="email" name="email" class="mt-1 p-2 border rounded-md w-full" required>
+    </div>
+
+    <div class="mb-4">
+      <label for="password" class="block text-sm font-medium text-gray-600">Password:</label>
+      <input type="password" id="password" name="password" class="mt-1 p-2 border rounded-md w-full" required>
+    </div>
+
+    <button type="submit" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">Login</button>
+  </form>
+
+  <!-- Sign Up Button -->
+  <button id="sign-up-button" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">Sign Up</button>
+  <!-- Back Button -->
+  <button id="backButton" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">Back</button>
+</div>
+
+<script type="module" src="js/login.js"></script>
+<script src="js/jsComponents/jsBasicHeaderFooter.js"></script>
+</body>
+</html>
+

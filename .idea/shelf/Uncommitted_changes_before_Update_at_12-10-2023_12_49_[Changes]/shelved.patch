@@ -1,0 +1,100 @@
+Index: js/login.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import {postObjectAsJson} from \"./module.js\";\r\n\r\n\r\nconst url = \"http://localhost:8080/user/login\"\r\nconst loginForm = document.getElementById(\"login-form\")\r\nconst lastUserEmail = localStorage.getItem('lastUserEmail');\r\nif (lastUserEmail) {\r\n    document.getElementById(\"email\").value = lastUserEmail;\r\n}\r\n\r\nasync function login(event) {\r\n    event.preventDefault();\r\n    try {\r\n        const userCredentials = {\r\n            email: document.getElementById(\"email\").value,\r\n            password: document.getElementById(\"password\").value,\r\n        };\r\n        const resp = await postObjectAsJson(url, userCredentials, \"POST\");\r\n\r\n        // ... (previous code)\r\n\r\n        if (resp.ok) {\r\n            const responseText = await resp.text();\r\n\r\n            if (responseText.includes(\"Login successful\")) {\r\n                // Fetch the user's role using the /user/role/{email} endpoint\r\n                const roleResp = await fetch(`http://localhost:8080/user/role/${userCredentials.email}`);\r\n                if (roleResp.ok) {\r\n                    const roleData = await roleResp.json();\r\n                    console.log('Role data:', roleData);\r\n                    const userRole = roleData || \"CUSTOMER\";\r\n\r\n                    // Redirect based on the user role\r\n                    if (userRole === \"CUSTOMER\") {\r\n                        window.location.href = \"costumerPage.html\";\r\n                    } else if (userRole === \"ADMIN\" || userRole === \"Employee\") {\r\n                        window.location.href = \"employeePage.html\";\r\n                    } else {\r\n                        alert('Unknown role. Unable to redirect.');\r\n                    }\r\n                } else {\r\n                    // Handle error when fetching user role\r\n                    console.error('Error fetching user role:', roleResp.statusText);\r\n                    alert('Error fetching user role');\r\n                }\r\n            } else {\r\n                alert('An error occurred');\r\n            }\r\n\r\n        } else if (resp.status === 400) {\r\n            alert('Invalid username or password');\r\n        } else if (resp.status === 404) {\r\n            alert('User not found');\r\n        } else {\r\n            alert('An error occurred');\r\n        }\r\n\r\n        loginForm.reset(); // Reset the form\r\n    } catch (error) {\r\n        console.error('Error:', error);\r\n    }\r\n}\r\n\r\nloginForm.addEventListener('submit', login);\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nconst sigupButton = document.getElementById(\"sign-up-button\");\r\n\r\n//Back button that go back to where you come from with history.back()\r\ndocument.getElementById('backButton').addEventListener('click', function() {\r\n    history.back();\r\n})\r\n\r\ndocument.addEventListener(\"DOMContentLoaded\", function () {\r\n    sigupButton.onclick = () => {\r\n        window.location.href = \"signup.html\";\r\n    };\r\n});
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/js/login.js b/js/login.js
+--- a/js/login.js	(revision 6ef2b82efa199744830d182578e1cf892a3b651d)
++++ b/js/login.js	(date 1697021582712)
+@@ -1,7 +1,7 @@
+ import {postObjectAsJson} from "./module.js";
+ 
+ 
+-const url = "http://localhost:8080/user/login"
++const url = "http://localhost:8080/session/login"
+ const loginForm = document.getElementById("login-form")
+ const lastUserEmail = localStorage.getItem('lastUserEmail');
+ if (lastUserEmail) {
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_05-10-2023_11_15_[Changes]/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_05-10-2023_11_15_[Changes]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Update_at_05-10-2023_11_15_[Changes]/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_05-10-2023_11_15_[Changes]/shelved.patch	(revision 6ef2b82efa199744830d182578e1cf892a3b651d)
++++ /dev/null	(revision 6ef2b82efa199744830d182578e1cf892a3b651d)
+@@ -1,32 +0,0 @@
+-Index: .idea/workspace.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"8aba5531-4f90-408c-a6f0-85f8bb80f93b\" name=\"Changes\" comment=\"\">\r\n      <change afterPath=\"$PROJECT_DIR$/css/style.css\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/index.html\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"package.json\" />\r\n        <option value=\"CSS File\" />\r\n        <option value=\"HTML File\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2WCLncYkE7wQemt30ekUjMNwgaO\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"DefaultHtmlFileTemplate\": \"HTML File\",\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"WebServerToolWindowFactoryState\": \"false\",\r\n    \"git-widget-placeholder\": \"main\",\r\n    \"list.type.of.created.stylesheet\": \"CSS\",\r\n    \"node.js.detected.package.eslint\": \"true\",\r\n    \"node.js.detected.package.tslint\": \"true\",\r\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\r\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\r\n    \"vue.rearranger.settings.migration\": \"true\"\r\n  }\r\n}]]></component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"8aba5531-4f90-408c-a6f0-85f8bb80f93b\" name=\"Changes\" comment=\"\" />\r\n      <created>1696231784371</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1696231784371</updated>\r\n      <workItem from=\"1696231792523\" duration=\"1000\" />\r\n      <workItem from=\"1696239661801\" duration=\"1668000\" />\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n</project>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+---- a/.idea/workspace.xml	(revision 54cb6df27daf4765644b45bbc9aad3c64b6151fe)
+-+++ b/.idea/workspace.xml	(date 1696497322529)
+-@@ -4,11 +4,7 @@
+-     <option name="autoReloadType" value="SELECTIVE" />
+-   </component>
+-   <component name="ChangeListManager">
+--    <list default="true" id="8aba5531-4f90-408c-a6f0-85f8bb80f93b" name="Changes" comment="">
+--      <change afterPath="$PROJECT_DIR$/css/style.css" afterDir="false" />
+--      <change afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+--      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+--    </list>
+-+    <list default="true" id="8aba5531-4f90-408c-a6f0-85f8bb80f93b" name="Changes" comment="" />
+-     <option name="SHOW_DIALOG" value="false" />
+-     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+-     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+-@@ -38,7 +34,7 @@
+-     "RunOnceActivity.OpenProjectViewOnStart": "true",
+-     "RunOnceActivity.ShowReadmeOnStart": "true",
+-     "WebServerToolWindowFactoryState": "false",
+--    "git-widget-placeholder": "main",
+-+    "git-widget-placeholder": "develop",
+-     "list.type.of.created.stylesheet": "CSS",
+-     "node.js.detected.package.eslint": "true",
+-     "node.js.detected.package.tslint": "true",
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_05-10-2023_11_15__Changes_.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_05-10-2023_11_15__Changes_.xml b/.idea/shelf/Uncommitted_changes_before_Update_at_05-10-2023_11_15__Changes_.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_05-10-2023_11_15__Changes_.xml	(revision 6ef2b82efa199744830d182578e1cf892a3b651d)
++++ /dev/null	(revision 6ef2b82efa199744830d182578e1cf892a3b651d)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Update_at_05-10-2023_11_15_[Changes]" date="1696497344472" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05-10-2023_11_15_[Changes]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 05-10-2023 11:15 [Changes]" />
+-</changelist>
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"8aba5531-4f90-408c-a6f0-85f8bb80f93b\" name=\"Changes\" comment=\"Created back buttons and implemented in all the pages.\" />\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"package.json\" />\r\n        <option value=\"CSS File\" />\r\n        <option value=\"JavaScript File\" />\r\n        <option value=\"HTML File\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"KN-53-frontend-view-users-name-somewhere-welcome-user.name-\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2WCLncYkE7wQemt30ekUjMNwgaO\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"DefaultHtmlFileTemplate\": \"HTML File\",\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\r\n    \"WebServerToolWindowFactoryState\": \"false\",\r\n    \"git-widget-placeholder\": \"adding__edit__and__delete__to__movies\",\r\n    \"list.type.of.created.stylesheet\": \"CSS\",\r\n    \"node.js.detected.package.eslint\": \"true\",\r\n    \"node.js.detected.package.tslint\": \"true\",\r\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\r\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\r\n    \"nodejs_package_manager_path\": \"npm\",\r\n    \"vue.rearranger.settings.migration\": \"true\"\r\n  }\r\n}]]></component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"8aba5531-4f90-408c-a6f0-85f8bb80f93b\" name=\"Changes\" comment=\"\" />\r\n      <created>1696231784371</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1696231784371</updated>\r\n      <workItem from=\"1696231792523\" duration=\"1000\" />\r\n      <workItem from=\"1696239661801\" duration=\"1668000\" />\r\n      <workItem from=\"1696408727414\" duration=\"25469000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Fixed some refactor and added the dropdown to pick some off the enums in category and agelimits\">\r\n      <created>1696440989103</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1696440989103</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"Added create user in the frontend so you can create a user.\">\r\n      <created>1696511640262</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1696511640262</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"Now you can login to the system\">\r\n      <created>1696513642231</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1696513642231</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"added createElement and showMovies to module\">\r\n      <created>1696585791572</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1696585791572</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"Created back buttons and implemented in all the pages.\">\r\n      <created>1696790565368</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1696790565368</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"6\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Fixed some refactor and added the dropdown to pick some off the enums in category and agelimits\" />\r\n    <MESSAGE value=\"Added create user in the frontend so you can create a user.\" />\r\n    <MESSAGE value=\"Now you can login to the system\" />\r\n    <MESSAGE value=\"added createElement and showMovies to module\" />\r\n    <MESSAGE value=\"Created back buttons and implemented in all the pages.\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Created back buttons and implemented in all the pages.\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 6ef2b82efa199744830d182578e1cf892a3b651d)
++++ b/.idea/workspace.xml	(date 1697027693230)
+@@ -4,7 +4,9 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="8aba5531-4f90-408c-a6f0-85f8bb80f93b" name="Changes" comment="Created back buttons and implemented in all the pages." />
++    <list default="true" id="8aba5531-4f90-408c-a6f0-85f8bb80f93b" name="Changes" comment="Created back buttons and implemented in all the pages.">
++      <change beforePath="$PROJECT_DIR$/js/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/login.js" afterDir="false" />
++    </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+@@ -41,7 +43,7 @@
+     "RunOnceActivity.ShowReadmeOnStart": "true",
+     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+     "WebServerToolWindowFactoryState": "false",
+-    "git-widget-placeholder": "adding__edit__and__delete__to__movies",
++    "git-widget-placeholder": "develop",
+     "list.type.of.created.stylesheet": "CSS",
+     "node.js.detected.package.eslint": "true",
+     "node.js.detected.package.tslint": "true",

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Movie</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+<div class="max-w-2xl mx-auto p-8">
+
+    <h1 class="text-2xl font-bold mb-8">Update Movie</h1>
+
+    <form id="updateMovieForm" method="post" class="mb-8">
+        <!-- Include a hidden input field for movie ID -->
+        <input type="hidden" id="movieId" name="movieId">
+
+        <label for="title" class="block text-gray-700 text-sm font-bold mb-2">Title:</label>
+        <input type="text" id="title" name="title" required class="border rounded-md p-2 w-full mb-4">
+
+        <label for="imageUrl" class="block text-gray-700 text-sm font-bold mb-2">Image URL (Optional):</label>
+        <input type="text" id="imageUrl" name="imageUrl" class="border rounded-md p-2 w-full mb-4">
+
+        <label for="category" class="block text-gray-700 text-sm font-bold mb-2">Category:</label>
+        <select id="category" name="category" required class="border rounded-md p-2 w-full mb-4">
+            <option value="ACTION">ACTION</option>
+            <option value="COMEDY">COMEDY</option>
+            <option value="DRAMA">DRAMA</option>
+            <option value="ROMANCE">ROMANCE</option>
+            <option value="HORROR">HORROR</option>
+            <option value="SCIENCE_FICTION">SCIENCE_FICTION</option>
+            <option value="FANTASY">FANTASY</option>
+            <option value="ANIMATION">ANIMATION</option>
+            <option value="THRILLER">THRILLER</option>
+            <option value="CRIME">CRIME</option>
+            <option value="ADVENTURE">ADVENTURE</option>
+            <option value="MYSTERY">MYSTERY</option>
+            <option value="DOCUMENTARY">DOCUMENTARY</option>
+            <option value="FAMILY">FAMILY</option>
+            <option value="WAR">WAR</option>
+            <option value="MUSIC">MUSIC</option>
+            <option value="SPORT">SPORT</option>
+            <option value="WESTERN">WESTERN</option>
+            <option value="SUPERHERO">SUPERHERO</option>
+            <option value="HISTORICAL">HISTORICAL</option>
+            <option value="BIOPIC">BIOPIC</option>
+            <option value="FANTASY_ADVENTURE">FANTASY_ADVENTURE</option>
+            <option value="FANTASY_COMEDY">FANTASY_COMEDY</option>
+            <option value="FANTASY_DRAMA">FANTASY_DRAMA</option>
+            <option value="FANTASY_ROMANCE">FANTASY_ROMANCE</option>
+            <option value="SUPERHERO_ACTION">SUPERHERO_ACTION</option>
+            <option value="SUPERHERO_ADVENTURE">SUPERHERO_ADVENTURE</option>
+            <option value="SUPERHERO_COMEDY">SUPERHERO_COMEDY</option>
+            <option value="SUPERHERO_DRAMA">SUPERHERO_DRAMA</option>
+            <option value="SUPERHERO_ROMANCE">SUPERHERO_ROMANCE</option>
+            <option value="ANIMATED_ACTION">ANIMATED_ACTION</option>
+            <option value="ANIMATED_COMEDY">ANIMATED_COMEDY</option>
+            <option value="ANIMATED_DRAMA">ANIMATED_DRAMA</option>
+            <option value="ANIMATED_ROMANCE">ANIMATED_ROMANCE</option>
+            <option value="ANIMATED_FANTASY">ANIMATED_FANTASY</option>
+            <option value="ANIMATED_FAMILY">ANIMATED_FAMILY</option>
+            <option value="ANIMATED_MUSICAL">ANIMATED_MUSICAL</option>
+            <option value="ANIMATED_ADVENTURE">ANIMATED_ADVENTURE</option>
+            <option value="ANIMATED_SUPERHERO">ANIMATED_SUPERHERO</option>
+            <option value="ANIMATED_HISTORICAL">ANIMATED_HISTORICAL</option>
+            <option value="ANIMATED_BIOPIC">ANIMATED_BIOPIC</option>
+            <option value="ANIMATED_CRIME">ANIMATED_CRIME</option>
+            <option value="ANIMATED_MYSTERY">ANIMATED_MYSTERY</option>
+            <option value="ANIMATED_SCIFI">ANIMATED_SCIFI</option>
+            <option value="ANIMATED_WAR">ANIMATED_WAR</option>
+            <option value="ANIMATED_DOCUMENTARY">ANIMATED_DOCUMENTARY</option>
+            <option value="ANIMATED_SPORT">ANIMATED_SPORT</option>
+            <option value="ANIMATED_WESTERN">ANIMATED_WESTERN</option>
+        </select>
+
+        <label for="ageLimit" class="block text-gray-700 text-sm font-bold mb-2">Age Limit:</label>
+        <select id="ageLimit" name="ageLimit" required class="border rounded-md p-2 w-full mb-4">
+            <option value="0">G (General Audiences)</option>
+            <option value="1">PG (Parental Guidance Suggested)</option>
+            <option value="2">PG-13 (Parents Strongly Cautioned)</option>
+            <option value="3">R (Restricted)</option>
+            <option value="4">NC-17 (Adults Only)</option>
+        </select>
+
+        <label for="duration" class="block text-gray-700 text-sm font-bold mb-2">Duration (minutes):</label>
+        <input type="number" id="duration" name="duration" required class="border rounded-md p-2 w-full mb-4">
+
+        <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Description:</label>
+        <textarea id="description" name="description" required class="border rounded-md p-2 w-full mb-4"></textarea>
+
+        <input type="submit" value="Update Movie" id="updateButton" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
+        <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center" id="backButton">Back</button>
+    </form>
+
+</div>
+
+<script src="js/jsComponents/jsBasicHeaderFooter.js"></script>
+<script type="module" src="js/updateMovie.js"></script>
+
+</body>
+</html>
+

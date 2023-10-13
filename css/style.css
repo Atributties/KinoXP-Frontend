@@ -1,0 +1,125 @@
+/* Reset some default styles */
+body, html {
+    margin: 0;
+    padding: 0;
+}
+h1 {
+    font-size: 28px; /* Increase the font size */
+    text-align: center;
+    margin: 20px 0;
+    color: #333; /* Change the text color */
+    text-transform: uppercase; /* Uppercase the text */
+}
+
+/* Page container */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+#showtimeContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+}
+
+.left-container {
+    float: left;
+    width: 30%;
+}
+
+.right-container {
+    float: right;
+    width: 70%;
+}
+
+/* Movie details */
+#movieDetailsContainer img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+#movieDetailsContainer h2 {
+    font-size: 24px;
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* Seats table */
+.seats-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.seat-cell {
+    text-align: center;
+    padding: 4px;
+    border: 2px solid #ddd;
+    cursor: pointer;
+}
+
+.seat-cell img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Styling for available seats */
+.seat-cell.available {
+    background-color: #8cc73f; /* Green */
+}
+
+/* Styling for selected seats */
+.seat-cell.selected {
+    background-color: #ffa500; /* Orange */
+}
+
+/* Confirm Reservation and Back to Showtime buttons */
+#confirmReservationButton, #backToShowtimeButton {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    cursor: pointer;
+    border: none;
+}
+
+#confirmReservationButton:hover, #backToShowtimeButton:hover {
+    background-color: #555;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+    .left-container, .right-container {
+        width: 100%;
+        float: none;
+    }
+
+    #movieDetailsContainer h2 {
+        font-size: 20px;
+    }
+}
+
+.showtime-link {
+    background-color: #e5e5e5; /* Gray background color */
+    color: #333; /* Gray text color */
+    font-weight: bold;
+    padding: 2px 8px; /* Adjust padding to match your design */
+    border-radius: 4px; /* Rounded corners */
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none; /* Remove underline from links */
+}
+
+.showtime-link:hover {
+    background-color: #ccc; /* Gray background color on hover */
+}
+
+

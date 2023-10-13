@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign Up</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css"> <!-- Add your CSS file link here if needed -->
+</head>
+<body>
+<h1>Sign Up</h1>
+
+<form id="signup-form">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" required>
+
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email" required>
+
+  <label for="phone">Phone Number:</label>
+  <input type="text" id="phone" name="phone" required>
+
+  <label for="password">Password:</label>
+  <input type="password" id="password" name="password" required>
+
+  <label for="confirm-password">Confirm Password:</label>
+  <input type="password" id="confirm-password" name="confirm-password" required>
+
+  <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center" type="submit">Sign Up</button>
+  <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center" id="backButton">Back</button>
+</form>
+
+<!-- Back to Login Page Link -->
+<p>Already have an account? <a href="login.html">Login</a></p>
+
+
+<script type="module" src="js/signup.js"></script>
+<script src="js/jsComponents/jsBasicHeaderFooter.js"></script>
+</body>
+</html>
