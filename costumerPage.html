@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <title>Kino XP Frontpage - Movies</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100">
 
-<h1>All Movies</h1>
+<div class="p-8 flex ml-0 mr-0">
 
   <!-- Category and Age Limit Dropdowns -->
   <div class="w-1/4 pr-4 ml-0">
@@ -25,12 +26,14 @@
 
   <!-- Movie List -->
   <div class="w-3/4 pl-4">
-    <div class="mx-auto text-center">
+    <div class="mx-auto text-center"> <!-- Add mx-auto and text-center here -->
       <ul id="movieList" class="list-none p-0">
         <!-- Add your movie list items here -->
       </ul>
     </div>
   </div>
+
+</div>
 
 
 
