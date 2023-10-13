@@ -3,6 +3,13 @@ body, html {
     margin: 0;
     padding: 0;
 }
+h1 {
+    font-size: 28px; /* Increase the font size */
+    text-align: center;
+    margin: 20px 0;
+    color: #333; /* Change the text color */
+    text-transform: uppercase; /* Uppercase the text */
+}
 
 /* Page container */
 body {
@@ -49,7 +56,7 @@ body {
 
 .seat-cell {
     text-align: center;
-    padding: 10px;
+    padding: 4px;
     border: 2px solid #ddd;
     cursor: pointer;
 }
@@ -99,3 +106,5 @@ body {
         font-size: 20px;
     }
 }
+
+

@@ -71,15 +71,17 @@ function displaySeats(showtime) {
         seatImageCell.addEventListener("click", () => {
             if (seat.status === "AVAILABLE") {
                 seatImageCell.style.backgroundColor = "orange";
-                seat.status = "RESERVED";
+                seat.status = "SELECTED";
                 selectedSeats.push(seat);
-            } else if (seat.status === "RESERVED") {
+            } else if (seat.status === "SELECTED") {
                 seatImageCell.style.backgroundColor = "green";
                 seat.status = "AVAILABLE";
                 const index = selectedSeats.findIndex(selectedSeat => selectedSeat.id === seat.id);
                 if (index !== -1) {
                     selectedSeats.splice(index, 1);
                 }
+            } else if (seat.status === "RESERVED") {
+                // Do nothing if the seat is already reserved
             }
             console.log(selectedSeats);
         });
