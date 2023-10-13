@@ -107,4 +107,19 @@ body {
     }
 }
 
+.showtime-link {
+    background-color: #e5e5e5; /* Gray background color */
+    color: #333; /* Gray text color */
+    font-weight: bold;
+    padding: 2px 8px; /* Adjust padding to match your design */
+    border-radius: 4px; /* Rounded corners */
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none; /* Remove underline from links */
+}
+
+.showtime-link:hover {
+    background-color: #ccc; /* Gray background color on hover */
+}
+
 

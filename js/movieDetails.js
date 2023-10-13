@@ -101,11 +101,11 @@ function displayShowtimes(showtimes) {
         showtimeLink.href = "#"; // Her kan du tilføje den ønskede linkdestination
         showtimeLink.dataset.showtimeId = showtime.id; // Gem showtime ID som et data-attribut
 
+
         // Lyt efter klik på ankellinket og send showtime ID
         showtimeLink.addEventListener("click", function (event) {
             event.preventDefault(); // Prevent the default link behavior
             const showtimeId = showtime.id; // Get the showtime ID
-            console.log("Moviedetaisl" + showtimeId)
             window.location.href = `showShowtime.html?showtimeId=${showtimeId}`; // Include showtimeId in the URL
         });
         showtimeLink.textContent = `Date And Time: ${formattedDateTime}`;
