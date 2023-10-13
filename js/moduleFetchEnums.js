@@ -67,5 +67,28 @@ async function fetchRoles() {
     }
 }
 
+async function fetchTheaterName() {
 
-export {fetchMovieCategories, fetchAgeLimits, fetchRoles}
+    const theaterName = "http://localhost:8080/theaterName";
+    try {
+        const response = await fetchAnyUrl(theaterName);
+        const theaterSelect = document.getElementById("theaterSelect");
+
+        // Populate the dropdown with movie categories
+        response.forEach(theater => {
+            const option = document.createElement("option");
+            option.value = theater;
+            option.textContent = theater;
+            theaterSelect.appendChild(option);
+        });
+        {
+            console.error("Error fetching theater:", response.status);
+        }
+    } catch
+        (error) {
+        console.error("Error fetching theater:", error);
+    }
+}
+
+
+export {fetchMovieCategories, fetchAgeLimits, fetchRoles, fetchTheaterName}
